@@ -1,6 +1,6 @@
-# Neon Arena Rebuild
+# 霓虹竞技场 / Neon Arena
 
-使用 Unity 6 与 C# 跟随教程重写并在 AI 辅助下迭代的 2D 生存射击项目。玩家开局从三种武器中选择一把，在有限竞技场中移动并自动射击，击败敌人获得经验，再通过三选一升级构筑最多六个武器槽位的组合。
+使用 Unity 6 与 C# 开发的 2D 生存射击作品。玩家开局从三种武器中选择一把，在有限竞技场中移动并自动射击，击败敌人获得经验，再通过三选一升级构筑最多六个武器槽位的组合。
 
 **当前正式版 v1.3.0**：集齐六武器触发小首领，击败后直接升两级、六项金色奖励选两项，再挑战最终首领并结算胜利。主菜单新增中英文和声音设置。先看 [v1.3.0 指南与开发记录](docs/V1_3_0_BOSSES_AND_SETTINGS.md) 及 [验证证据](docs/test-results/v1.3.0/README.md)。
 
@@ -8,17 +8,16 @@
 
 ![Golden rewards](docs/test-results/v1.3.0/native/v1.3.0-rewards-zh.png)
 
-金色奖励画面由受控测试生成，用于展示六选二界面，不是作者手动通关证明。
-
 ## 下载与版本
 
 - [GitHub Release v1.3.0](https://github.com/ff1333/NeonArena/releases/tag/v1.3.0)（当前正式版，Windows / WebGL / Android）
+- [作品集演示视频](https://github.com/ff1333/NeonArena/releases/download/v1.3.0/NeonArena-v1.3.0-portfolio-720p.mp4)（中文旁白与字幕）
 - [v1.3.0 发布说明](docs/RELEASE_NOTES_v1.3.0.md)
 - [GitHub Release v1.1.0](https://github.com/ff1333/NeonArena/releases/tag/v1.1.0)（历史已发布版本）
 - [GitHub Release v1.0.0](https://github.com/ff1333/NeonArena/releases/tag/v1.0.0)（历史稳定版）
 - Release 附件包含 Windows、WebGL 和 Android 测试包，以及 SHA-256 校验文件。
 - `v1.3.0` Android APK 已由作者在真实设备上完成基本验收，没有发现阻塞发布的问题；多机型兼容与长时间压力仍未覆盖。
-- 在线 WebGL 试玩与演示视频将在对应公开页面完成后补充链接。
+- Release 已提供 Windows、WebGL、Android 构建、演示视频和校验文件。
 
 ## 操作
 

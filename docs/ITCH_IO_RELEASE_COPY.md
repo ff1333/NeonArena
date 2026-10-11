@@ -4,7 +4,7 @@
 
 ## 基本设置
 
-- Title: `Neon Arena Rebuild`
+- Title: `Neon Arena`
 - Project URL: `neon-arena-rebuild`
 - Classification: `Games`
 - Kind of project: `HTML`
@@ -17,7 +17,7 @@
 ## Short description
 
 ```text
-A Unity 6 / C# 2D survival shooter rebuilt as a portfolio project, featuring data-driven weapons and enemies, six weapon slots, object pooling, and multiplatform builds.
+A Unity 6 / C# 2D survival shooter featuring data-driven weapons and enemies, six weapon slots, object pooling, boss encounters, and multiplatform builds.
 ```
 
 ## 页面正文
