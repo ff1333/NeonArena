@@ -49,7 +49,7 @@ Move through a bounded arena while independent weapons automatically acquire tar
 - Windows, WebGL and Android build pipeline
 
 Source code, development logs and Windows/Android downloads:
-https://github.com/ff1333/neon-arena-survivor-unity
+https://github.com/ff1333/NeonArena
 
 This is a personal learning and portfolio rebuild, not a commercial release.
 ```

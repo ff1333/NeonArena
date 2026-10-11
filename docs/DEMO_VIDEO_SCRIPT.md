@@ -13,7 +13,7 @@
 | 45-57 秒 | Unity Hierarchy 中的四个对象池，再切到 Profiler | `对象池复用子弹、敌人、经验物和出生预警` |
 | 57-70 秒 | `Assets/Data` 与 `PlayerShooter.cs`、`EnemySpawner.cs` | `ScriptableObject 配置，运行时组件维护状态` |
 | 70-82 秒 | GitHub README 与 Release 页面 | `Windows / WebGL / Android 构建与完整开发日志` |
-| 82-90 秒 | 游戏画面和项目链接 | `github.com/ff1333/neon-arena-survivor-unity` |
+| 82-90 秒 | 游戏画面和项目链接 | `github.com/ff1333/NeonArena` |
 
 ## 完整照读口播稿
 
