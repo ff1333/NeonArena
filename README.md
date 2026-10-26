@@ -130,6 +130,8 @@ docs/
 
 ## 开发记录
 
+- [从启动到首领战的完整代码与开发解释](docs/PROJECT_DEVELOPMENT_EXPLAINED.md)
+
 - [v1.3.0 首领闭环、中英文设置与实现说明](docs/V1_3_0_BOSSES_AND_SETTINGS.md)
 - [v1.3.0 自动验证、平台构建与已知边界](docs/test-results/v1.3.0/README.md)
 - [v1.2.0 美术与战斗表现迭代](docs/V1_2_0_POLISH_GUIDE.md)
