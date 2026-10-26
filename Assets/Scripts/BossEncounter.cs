@@ -56,6 +56,11 @@ public sealed class BossEncounter : MonoBehaviour
     private IEnumerator Summon(bool final)
     {
         Stage=final ? BossStage.FinalIntro : BossStage.MiniIntro;
+        if(!final)
+        {
+            spawner.enabled=false;
+            ClearRegularWave();
+        }
         bar.SetActive(true); status.text=final ? "FINAL BATTLE" : "BOSS APPROACHING";
         healthFill.rectTransform.anchorMax=Vector2.one;
         var position=FindSpawnPoint();
@@ -99,9 +104,7 @@ public sealed class BossEncounter : MonoBehaviour
         Stage=BossStage.Rewards;
         spawner.enabled=false;
         // Clear the previous wave, including pending spawns, before the final duel.
-        foreach(var warning in FindObjectsByType<EnemySpawnWarning>(FindObjectsSortMode.None))warning.GetComponent<PoolMember>().Release();
-        foreach(var enemy in FindObjectsByType<EnemyController>(FindObjectsSortMode.None))
-            if(enemy.GetComponent<BossAgent>()==null)enemy.GetComponent<PoolMember>().Release();
+        ClearRegularWave();
         upgrades.ExternalChoiceOpen=true;
         progress.GrantBossLevels();
         rewardPanel.SetActive(true);Time.timeScale=0;MobileControlsOverlay.SetGameplayActive(false);
@@ -162,5 +165,13 @@ public sealed class BossEncounter : MonoBehaviour
     private static void ClearHazards()
     {
         foreach(var hazard in FindObjectsByType<BossHazard>(FindObjectsSortMode.None))hazard.Release();
+    }
+    private static void ClearRegularWave()
+    {
+        foreach(var warning in FindObjectsByType<EnemySpawnWarning>(FindObjectsSortMode.None))
+            warning.GetComponent<PoolMember>().Release();
+        foreach(var enemy in FindObjectsByType<EnemyController>(FindObjectsSortMode.None))
+            if(enemy.GetComponent<BossAgent>()==null)
+                enemy.GetComponent<PoolMember>().Release();
     }
 }
