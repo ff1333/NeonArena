@@ -830,7 +830,9 @@ Health.Damaged / EnemyController.DiedGlobally
 - 发布边界 `30/30` 通过。
 - Windows 候选包构建 `0 error`，受控首领画面和战斗冒烟通过。
 - Windows 自动首领练习从 42 点生命开始，使用固定自动规避，在约 23 秒被一次范围攻击击杀。日志已保留为 `NEON_BOSS_PRACTICE_FAIL`，不能写成人工通关。
-- Android/WebGL 与作者真机验收仍是发布前待办。
+- Android 两次自动构建都在本地 Player DAG 阶段卡住，没有产出 APK；WebGL 本轮未构建。
+- Draft PR #17 已创建，但尚未合并或发布。
+- 作者 Windows/Android 真机验收仍是发布前待办。
 
 这意味着代码主体和工程证据已经完成，但“手感是否合适”和“真机是否可玩”没有被自动化替代。
 
@@ -843,9 +845,11 @@ Health.Damaged / EnemyController.DiedGlobally
 - 动态战斗导演：`bae78f0 feat: add bounded dynamic combat director`
 - 调试面板与自动测试：`8da5ada test: expose boss and director decisions for debugging`
 - v1.4.0 版本号、边界验证与发布冒烟：`3a382d9 chore: prepare v1.4.0 release verification`
+- 发布候选文档与证据：`d0e616a docs: record v1.4 AI design tests and release evidence`
 - 功能分支：`feature/intelligent-combat-ai`
+- Draft PR：<https://github.com/ff1333/NeonArena/pull/17>
 
-发布版本号、合并提交和 Release 链接在发布完成后补记到总控文件。
+合并提交、Release 链接和作者验收结果在发布完成后补记到总控文件。
 
 ### 24.2 60 秒面试讲法
 
@@ -873,4 +877,4 @@ Health.Damaged / EnemyController.DiedGlobally
 
 它有 3.5 秒持续时间、7 秒再次触发冷却，而且只停止新增刷怪，不清理场上敌人。它的目标是给玩家一个喘息的决策空间，不是重置战斗。
 
-具体阶段状态、测试结果和发布进度记录在 [README](../README.md) 与 [v1.4 验证记录](test-results/v1.4.0/README.md)。
+具体阶段状态、测试结果和发布进度记录在 [README](../README.md)、[PR #17](https://github.com/ff1333/NeonArena/pull/17) 与 [v1.4 验证记录](test-results/v1.4.0/README.md)。

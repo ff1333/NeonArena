@@ -2,7 +2,9 @@
 
 使用 Unity 6 与 C# 开发的 2D 生存射击作品。玩家开局从三种武器中选择一把，在有限竞技场中移动并自动射击，击败敌人获得经验，再通过三选一升级构筑最多六个武器槽位的组合。
 
-**当前正式版 v1.4.0**：Boss 不再固定轮播技能，而由 Utility AI 根据距离、玩家速度、场地位置和自身血量选择追击、预测冲刺、弹幕、区域轰炸、半血环形弹幕或重新站位；普通战斗由有上下限的动态战斗导演调整刷怪节奏、批次和敌人组合，残血重伤后会出现有限恢复窗口。先看 [v1.4.0 发布说明](docs/RELEASE_NOTES_v1.4.0.md) 及 [开发与验证记录](docs/devlogs/21-v1.4.0-intelligent-combat.md)。
+**v1.4.0 发布候选**：Boss 不再固定轮播技能，而由 Utility AI 根据距离、玩家速度、场地位置和自身血量选择追击、预测冲刺、弹幕、区域轰炸、半血环形弹幕或重新站位；普通战斗由有上下限的动态战斗导演调整刷怪节奏、批次和敌人组合，残血重伤后会出现有限恢复窗口。
+
+当前正式版仍为 `v1.3.0`。v1.4.0 的代码、自动测试和 Windows 候选包已完成，但作者 Windows/Android 手动试玩尚未完成，因此暂不合并、不发布正式 Release。先看 [v1.4.0 发布候选说明](docs/RELEASE_NOTES_v1.4.0.md)、[PR #17](https://github.com/ff1333/NeonArena/pull/17) 及 [开发与验证记录](docs/devlogs/21-v1.4.0-intelligent-combat.md)。
 
 ![v1.3.0 title](docs/test-results/v1.3.0/native/v1.3.0-title-zh.png)
 
@@ -10,15 +12,15 @@
 
 ## 下载与版本
 
-- [GitHub Release v1.4.0](https://github.com/ff1333/NeonArena/releases/tag/v1.4.0)（当前正式版，Windows / WebGL / Android）
-- [作品集演示视频](https://github.com/ff1333/NeonArena/releases/download/v1.3.0/NeonArena-v1.3.0-portfolio-720p.mp4)（v1.3.0 中文旁白版本；v1.4.0 演示更新见发布页）
-- [v1.4.0 发布说明](docs/RELEASE_NOTES_v1.4.0.md)
-- [GitHub Release v1.3.0](https://github.com/ff1333/NeonArena/releases/tag/v1.3.0)（历史版本）
+- [GitHub Release v1.3.0](https://github.com/ff1333/NeonArena/releases/tag/v1.3.0)（当前正式版，Windows / WebGL / Android）
+- [作品集演示视频](https://github.com/ff1333/NeonArena/releases/download/v1.3.0/NeonArena-v1.3.0-portfolio-720p.mp4)（v1.3.0 中文旁白与字幕）
+- [v1.4.0 Pull Request #17](https://github.com/ff1333/NeonArena/pull/17)（发布候选，等待人工验收）
+- [v1.4.0 发布候选说明](docs/RELEASE_NOTES_v1.4.0.md)
 - [GitHub Release v1.1.0](https://github.com/ff1333/NeonArena/releases/tag/v1.1.0)（历史已发布版本）
 - [GitHub Release v1.0.0](https://github.com/ff1333/NeonArena/releases/tag/v1.0.0)（历史稳定版）
-- Release 附件包含 Windows、WebGL 和 Android 测试包，以及 SHA-256 校验文件。
-- `v1.3.0` Android APK 已由作者在真实设备上完成基本验收；`v1.4.0` 的真机验收结果以发布页和验证记录为准。
-- Release 已提供 Windows、WebGL、Android 构建、演示视频和校验文件。
+- 已发布版本的 Release 附件包含 Windows、WebGL 和 Android 测试包，以及 SHA-256 校验文件。
+- `v1.3.0` Android APK 已由作者在真实设备上完成基本验收。
+- v1.4.0 尚未发布；Windows 候选包已构建，Android 自动构建在本地 Player DAG 阶段卡住且未产出 APK，真机验收未执行。
 
 ## 操作
 
@@ -121,10 +123,10 @@ docs/
 
 - PlayMode：`18/18 PASS`，覆盖原六武器闭环、Boss 六行为、冷却/重复惩罚、靠边偏好、半血环形弹幕、导演边界与恢复窗口
 - 发布边界：`30/30 PASS`，覆盖 Main 场景、对象池、配置、Boss/导演配置、目标选择、版本和平台设置
-- Windows：v1.4.0 候选包启动与受控 Runtime 冒烟结果以 [v1.4.0 验证记录](docs/devlogs/22-v1.4.0-build-verification.md) 为准
-- WebGL：以 v1.4.0 验证记录为准
-- Android：v1.4.0 候选包构建与真机验收以发布页和验证记录为准
-- Windows / WebGL / Android 构建结果、附件 SHA-256 和 APK 签名以发布页为准
+- Windows：v1.4.0 候选包启动与受控 Runtime 冒烟通过，详见 [v1.4.0 验证记录](docs/devlogs/22-v1.4.0-build-verification.md)
+- WebGL：本轮未构建
+- Android：自动构建在本地 Player DAG 阶段卡住且未产出 APK，真机验收未执行
+- 当前没有 v1.4.0 GitHub Release；不以候选包冒充已发布版本
 
 详细过程与适用边界见 [v1.3.0 验证证据](docs/test-results/v1.3.0/README.md)。
 
