@@ -149,6 +149,7 @@ docs/
 
 - [从启动到首领战的完整代码与开发解释](docs/PROJECT_DEVELOPMENT_EXPLAINED.md)
 - [v1.4.0 智能首领、动态战斗导演与验证边界](docs/devlogs/21-v1.4.0-intelligent-combat.md)
+- [v1.4.0 人工验收清单](docs/V1_4_0_MANUAL_ACCEPTANCE.md)（尚未执行）
 
 - [v1.3.0 首领闭环、中英文设置与实现说明](docs/V1_3_0_BOSSES_AND_SETTINGS.md)
 - [v1.3.0 自动验证、平台构建与已知边界](docs/test-results/v1.3.0/README.md)

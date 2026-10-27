@@ -812,7 +812,7 @@ Health.Damaged / EnemyController.DiedGlobally
 
 ### 23.3 人工验收清单
 
-自动测试证明规则，不证明手感。发布前应在 Windows 和 Android 上分别检查：
+自动测试证明规则，不证明手感。可直接使用仓库中的 `docs/V1_4_0_MANUAL_ACCEPTANCE.md` 记录 Windows 和 Android 结果。发布前应分别检查：
 
 1. 在 Editor 或 Development Build 中开局按 `F3` 能看到 Boss 和导演信息；普通 Windows/Android 发布包不包含该调试面板。
 2. 打完整一局，观察 Boss 是否会在远距离追击、中距离冲刺/弹幕、玩家靠边时区域轰炸之间变化，而不是固定循环。
