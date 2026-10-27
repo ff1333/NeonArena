@@ -7,6 +7,7 @@ public static class EnemyRegistry
         new List<EnemyController>();
 
     public static IReadOnlyList<EnemyController> ActiveEnemies => activeEnemies;
+    public static int ActiveCount => activeEnemies.Count;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetRegistry()

@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59903eee8a8966741abee50d7180cb29, type: 3}
+  m_Name: CombatDirectorConfig
+  m_EditorClassIdentifier: NeonArena.Runtime::CombatDirectorConfig
+  basePressure: 0.25
+  healthWeight: 0.55
+  weaponWeight: 0.18
+  killRateWeight: 0.22
+  crowdWeight: 0.2
+  recentDamageWeight: 0.35
+  baselineKillsPerSecond: 0.25
+  recentDamageWindow: 3
+  heavyDamageFraction: 0.18
+  recoveryHealthThreshold: 0.35
+  recoveryDuration: 3.5
+  recoveryCooldown: 7
+  pressureSmoothing: 1.2
+  slowestSpawnInterval: 1.5
+  fastestSpawnInterval: 0.55
+  minimumEnemyCap: 10
+  maximumEnemyCap: 28
+  maximumBatch: 3
+  recoveryIntervalMultiplier: 1.75
+  enemyWeights:
+  - behavior: 0
+    calmMultiplier: 1.25
+    pressureMultiplier: 0.85
+    recoveryMultiplier: 1.6
+  - behavior: 1
+    calmMultiplier: 0.65
+    pressureMultiplier: 1.2
+    recoveryMultiplier: 0.25
+  - behavior: 2
+    calmMultiplier: 0.45
+    pressureMultiplier: 1.4
+    recoveryMultiplier: 0.15

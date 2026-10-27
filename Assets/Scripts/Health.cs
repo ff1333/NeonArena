@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     public void AddArmor(float reduction) => DamageReduction = Mathf.Clamp01(DamageReduction + reduction);
 
     public event Action<float, float> Changed;
+    public event Action<float> Damaged;
     public event Action Died;
 
     private void Awake()
@@ -34,8 +35,10 @@ public class Health : MonoBehaviour
             return;
         }
 
-        Current = Mathf.Max(0f, Current - amount * (1f - DamageReduction));
+        float appliedDamage = amount * (1f - DamageReduction);
+        Current = Mathf.Max(0f, Current - appliedDamage);
         Changed?.Invoke(Current, maxHealth);
+        Damaged?.Invoke(appliedDamage);
 
         if (IsDead)
         {
