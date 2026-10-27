@@ -111,6 +111,45 @@ public sealed class BossAndSettingsTests
         Assert.That(game.HasWon,Is.False);
     }
     [UnityTest]
+    public IEnumerator EveryBossBehaviorExecutesAndCompletes()
+    {
+        yield return MiniBoss();
+        var boss=encounter.ActiveBoss;
+        boss.DebugHoldDecisions=true;
+        health.AddMaxHealth(1000);
+        var actions=new[]
+        {
+            BossActionType.Approach,BossActionType.PredictiveDash,
+            BossActionType.FanVolley,BossActionType.ZoneBombardment,
+            BossActionType.Reposition
+        };
+        foreach(var action in actions)
+        {
+            Assert.That(boss.DebugStartAction(action),Is.True,$"{action} did not start.");
+            Assert.That(boss.CurrentAction,Is.EqualTo(action));
+            yield return new WaitForSeconds(1.5f);
+            Assert.That(boss.LastCompletedAction,Is.EqualTo(action),$"{action} did not complete.");
+        }
+        boss.Health.TakeDamage(boss.Health.Max*.55f);
+        Assert.That(boss.DebugStartAction(BossActionType.RingBarrage),Is.True);
+        yield return new WaitForSeconds(1.5f);
+        Assert.That(boss.LastCompletedAction,Is.EqualTo(BossActionType.RingBarrage));
+    }
+    [UnityTest]
+    public IEnumerator BossDeathStopsDecisionAndReleasesHazards()
+    {
+        yield return MiniBoss();
+        var boss=encounter.ActiveBoss;
+        boss.ArmZone(Vector2.zero,2f,.5f,10);
+        yield return null;
+        boss.Health.TakeDamage(1000000);
+        yield return null;
+        Assert.That(encounter.ActiveBoss,Is.Null);
+        Assert.That(encounter.Stage,Is.EqualTo(BossStage.Rewards));
+        foreach(var hazard in Object.FindObjectsByType<BossHazard>(FindObjectsInactive.Include,FindObjectsSortMode.None))
+            Assert.That(hazard.gameObject.activeSelf,Is.False);
+    }
+    [UnityTest]
     public IEnumerator ChineseEnglishSettingsAndVolumePersistAcrossReload()
     {
         PortfolioSettings.SetLanguage(true);yield return null;

@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889f99e7c4d7c4540bd2a1d6d74e8b3e, type: 3}
+  m_Name: BossDecisionConfig
+  m_EditorClassIdentifier: NeonArena.Runtime::BossDecisionConfig
+  behaviors:
+  - type: 1
+    displayName: PURSUIT
+    enabled: 1
+    baseWeight: 1.2
+    minimumRange: 0.5
+    idealRange: 4
+    maximumRange: 20
+    cooldown: 1.4
+    windup: 0.1
+    recovery: 0.4
+    enragedWindupScale: 0.75
+  - type: 2
+    displayName: PREDICTIVE DASH
+    enabled: 1
+    baseWeight: 2.1
+    minimumRange: 3
+    idealRange: 6.5
+    maximumRange: 12
+    cooldown: 4.5
+    windup: 0.8
+    recovery: 0.4
+    enragedWindupScale: 0.75
+  - type: 3
+    displayName: FAN VOLLEY
+    enabled: 1
+    baseWeight: 2
+    minimumRange: 3
+    idealRange: 7
+    maximumRange: 14
+    cooldown: 3.2
+    windup: 0.8
+    recovery: 0.35
+    enragedWindupScale: 0.75
+  - type: 4
+    displayName: ZONE BOMBARDMENT
+    enabled: 1
+    baseWeight: 1.6
+    minimumRange: 2.5
+    idealRange: 7
+    maximumRange: 16
+    cooldown: 5.5
+    windup: 1
+    recovery: 0.45
+    enragedWindupScale: 0.75
+  - type: 5
+    displayName: RING BARRAGE
+    enabled: 1
+    baseWeight: 2.6
+    minimumRange: 1.5
+    idealRange: 4.5
+    maximumRange: 12
+    cooldown: 6.5
+    windup: 0.75
+    recovery: 0.4
+    enragedWindupScale: 0.75
+  - type: 6
+    displayName: REPOSITION
+    enabled: 1
+    baseWeight: 1
+    minimumRange: 0
+    idealRange: 3
+    maximumRange: 9
+    cooldown: 5
+    windup: 0.1
+    recovery: 0.35
+    enragedWindupScale: 0.75
+  repeatPenalty: 2.4
+  maximumRepeatPenalty: 4.8
+  repeatMemorySeconds: 6
