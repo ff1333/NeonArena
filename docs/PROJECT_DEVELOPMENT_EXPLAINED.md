@@ -833,7 +833,7 @@ Health.Damaged / EnemyController.DiedGlobally
 - APK 使用本地 Android Debug 证书签名，不是生产签名；当前没有连接设备，未安装，因此不把构建成功写成真机通过。
 - Windows 自动首领练习从 42 点生命开始，使用固定自动规避，在约 23 秒被一次范围攻击击杀。日志已保留为 `NEON_BOSS_PRACTICE_FAIL`，不能写成人工通关。
 - WebGL 构建已尝试，但在本地 Player DAG 阶段停滞且没有产物，未计入通过。
-- Draft PR #17 已创建，但尚未合并或发布。
+- Draft PR #17 已创建但未合并；Draft Release（id `425471979`）已上传 Windows ZIP、Android APK 和校验文件，未公开、未发布。
 - 作者 Windows/Android 手动验收仍是发布前待办。
 
 这意味着代码主体和工程证据已经完成，但“手感是否合适”和“真机是否可玩”没有被自动化替代。
@@ -850,8 +850,9 @@ Health.Damaged / EnemyController.DiedGlobally
 - 发布候选文档与证据：`d0e616a docs: record v1.4 AI design tests and release evidence`
 - 功能分支：`feature/intelligent-combat-ai`
 - Draft PR：<https://github.com/ff1333/NeonArena/pull/17>
+- Draft Release：id `425471979`，3 个附件，未发布。
 
-合并提交、Release 链接和作者验收结果在发布完成后补记到总控文件。
+合并提交、公开 Release 链接和作者验收结果在发布完成后补记到总控文件。
 
 ### 24.2 60 秒面试讲法
 

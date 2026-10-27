@@ -1,8 +1,8 @@
 # Neon Arena v1.4.0 — Intelligent Boss and Dynamic Combat Director
 
-Status: **release candidate, not published**.
+Status: **release candidate; draft release assets uploaded, not published**.
 
-Date: 2026-10-27. The code, PlayMode tests, boundary checks, Windows candidate and Android candidate APK are ready. Author Windows/Android playtesting is still required before merge and GitHub Release.
+Date: 2026-10-27. The code, PlayMode tests, boundary checks, Windows candidate, Android candidate APK and an unpublished Draft Release are ready. Author Windows/Android playtesting is still required before merge and publishing the release.
 
 ## Highlights
 

@@ -53,7 +53,8 @@ Windows 候选包：
 
 - 分支：`feature/intelligent-combat-ai`
 - 发布候选 PR：<https://github.com/ff1333/NeonArena/pull/17>（Draft）
-- 未合并、未创建 `v1.4.0` GitHub Release；等待作者试玩与发布决定。
+- 未合并；已建立不公开的 Draft Release（id `425471979`），上传 Windows ZIP、Android APK 和 SHA-256 校验文件。
+- 未发布公开的 `v1.4.0` GitHub Release；等待作者试玩与发布决定。
 - Windows 候选包：`Builds/Release/NeonArena-v1.4.0-Windows.zip`（53,514,909 bytes）。
 - Android 构建证据：[build-summary](Android-build-summary.txt)、[SHA-256](Android-SHA256SUMS.txt)、[manifest/signature](Android-verify.txt)。
 - Android 候选 APK：`Builds/Android/v1.4.0/NeonArenaRebuild-v1.4.0.apk`（51,728,735 bytes，本地构建产物，未提交到 Git）。
