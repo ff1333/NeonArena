@@ -814,7 +814,7 @@ Health.Damaged / EnemyController.DiedGlobally
 
 自动测试证明规则，不证明手感。发布前应在 Windows 和 Android 上分别检查：
 
-1. 开局按 `F3`（Windows）能看到 Boss 和导演信息；Android 开发包默认显示。
+1. 在 Editor 或 Development Build 中开局按 `F3` 能看到 Boss 和导演信息；普通 Windows/Android 发布包不包含该调试面板。
 2. 打完整一局，观察 Boss 是否会在远距离追击、中距离冲刺/弹幕、玩家靠边时区域轰炸之间变化，而不是固定循环。
 3. 把 Boss 打到半血，确认环形弹幕出现，但不会连续重复到无法躲避。
 4. 故意让玩家残血并承受一次重击，确认刷怪短暂停止，恢复后不会立刻再次停刷。
