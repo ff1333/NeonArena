@@ -24,6 +24,7 @@ public sealed class BossAgent : MonoBehaviour
     public Health Health { get; private set; }
     public bool IsPreparing => activeBehavior != null;
     public BossActionType CurrentAction => currentAction;
+    public Vector2 LockedDirection => lockedDirection;
     public BossActionType LastAction => lastAction;
     public BossActionType LastCompletedAction { get; private set; } = BossActionType.None;
 #if UNITY_EDITOR
