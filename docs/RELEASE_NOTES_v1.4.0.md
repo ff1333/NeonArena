@@ -56,6 +56,6 @@ When the player is at or below 35% health and has just taken heavy damage, new s
 - Automatic tests prove rules and bounds, not final game feel.
 - Boss and director weights still need broader manual playtesting.
 - Windows candidate runtime smoke passes; the fixed autopilot boss practice failed at 42 starting HP and is recorded as a limitation, not a manual clear.
-- Android v1.4.0 candidate APK builds successfully, but no device is connected; installation and device verification are not done.
-- WebGL was not rebuilt in this pass.
+- Android v1.4.0 candidate APK builds successfully with the local Android Debug certificate, but no device is connected; installation, production signing and device verification are not done.
+- WebGL build was attempted but stalled in the local Player DAG stage and produced no artifact.
 - The game remains a single-arena, single-player prototype without progression saving or online play.

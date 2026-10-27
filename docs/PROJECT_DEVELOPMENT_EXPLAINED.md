@@ -829,10 +829,10 @@ Health.Damaged / EnemyController.DiedGlobally
 - PlayMode `18/18` 通过，XML 证据在 `docs/test-results/v1.4.0/PlayMode-results.xml`。
 - 发布边界 `30/30` 通过。
 - Windows 候选包构建 `0 error`，受控首领画面和战斗冒烟通过。
-- Android 候选 APK 已构建成功：约 51.7 MB，0 error、1 warning；构建耗时 3 分 42 秒。
-- 当前没有连接 Android 设备，APK 未安装，因此不把构建成功写成真机通过。
+- Android 候选 APK 已构建成功：约 51.7 MB，0 error、1 warning；构建耗时 3 分 42 秒，versionCode 5。
+- APK 使用本地 Android Debug 证书签名，不是生产签名；当前没有连接设备，未安装，因此不把构建成功写成真机通过。
 - Windows 自动首领练习从 42 点生命开始，使用固定自动规避，在约 23 秒被一次范围攻击击杀。日志已保留为 `NEON_BOSS_PRACTICE_FAIL`，不能写成人工通关。
-- WebGL 本轮未构建。
+- WebGL 构建已尝试，但在本地 Player DAG 阶段停滞且没有产物，未计入通过。
 - Draft PR #17 已创建，但尚未合并或发布。
 - 作者 Windows/Android 手动验收仍是发布前待办。
 

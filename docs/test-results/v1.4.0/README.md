@@ -44,15 +44,16 @@ Windows 候选包：
 |---|---|---|---:|---|
 | Windows | PASS | 首领与战斗冒烟 PASS | 0 | 全量构建 1 条已知 Sprite Tiling 导入提示；增量总结 0 警告 |
 | Android | PASS | 未执行 | 0 | APK 51,728,735 bytes；1 warning；没有连接设备 |
-| WebGL | NOT RUN | 未执行 |  | 本轮优先验证 Windows 与 Android |
+| WebGL | BLOCKED | 未执行 |  | 已尝试构建，在本地 Player DAG 阶段停滞且无产物 |
 
 ## Git / PR
 
 - 分支：`feature/intelligent-combat-ai`
 - 发布候选 PR：<https://github.com/ff1333/NeonArena/pull/17>（Draft）
 - 未合并、未创建 `v1.4.0` GitHub Release；等待作者试玩与发布决定。
-- Android 构建证据：[build-summary](Android-build-summary.txt)、[SHA-256](Android-SHA256SUMS.txt)。
-- Android 候选 APK：`Builds/Android/v1.4.0/NeonArenaRebuild-v1.4.0.apk`（本地构建产物，未提交到 Git）。
+- Android 构建证据：[build-summary](Android-build-summary.txt)、[SHA-256](Android-SHA256SUMS.txt)、[manifest/signature](Android-verify.txt)。
+- Android 候选 APK：`Builds/Android/v1.4.0/NeonArenaRebuild-v1.4.0.apk`（51,728,735 bytes，本地构建产物，未提交到 Git）。
+- APK 为 **Android Debug** 证书签名，不是生产签名；当前没有连接设备，未安装、未真机测试。
 
 ## 作者真机验收
 
