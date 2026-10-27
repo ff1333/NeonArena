@@ -4,11 +4,17 @@
 
 **v1.4.0 发布候选**：Boss 不再固定轮播技能，而由 Utility AI 根据距离、玩家速度、场地位置和自身血量选择追击、预测冲刺、弹幕、区域轰炸、半血环形弹幕或重新站位；普通战斗由有上下限的动态战斗导演调整刷怪节奏、批次和敌人组合，残血重伤后会出现有限恢复窗口。
 
-当前正式版仍为 `v1.3.0`。v1.4.0 的代码、自动测试和 Windows 候选包已完成，但作者 Windows/Android 手动试玩尚未完成，因此暂不合并、不发布正式 Release。先看 [v1.4.0 发布候选说明](docs/RELEASE_NOTES_v1.4.0.md)、[PR #17](https://github.com/ff1333/NeonArena/pull/17) 及 [开发与验证记录](docs/devlogs/21-v1.4.0-intelligent-combat.md)。
+当前正式版仍为 `v1.3.0`。v1.4.0 的代码、自动测试、Windows 候选包和 Android 候选 APK 已完成，但作者 Windows/Android 手动试玩尚未完成，因此暂不合并、不发布正式 Release。先看 [v1.4.0 发布候选说明](docs/RELEASE_NOTES_v1.4.0.md)、[PR #17](https://github.com/ff1333/NeonArena/pull/17) 及 [开发与验证记录](docs/devlogs/21-v1.4.0-intelligent-combat.md)。
 
 ![v1.3.0 title](docs/test-results/v1.3.0/native/v1.3.0-title-zh.png)
 
 ![Golden rewards](docs/test-results/v1.3.0/native/v1.3.0-rewards-zh.png)
+
+v1.4 候选包中的首领战与普通战斗：
+
+| 首领战 | 战斗与经验物 |
+|---|---|
+| ![v1.4 boss](docs/test-results/v1.4.0/native/v1.4.0-boss.png) | ![v1.4 combat](docs/test-results/v1.4.0/native/v1.4.0-combat.png) |
 
 ## 下载与版本
 
@@ -20,7 +26,7 @@
 - [GitHub Release v1.0.0](https://github.com/ff1333/NeonArena/releases/tag/v1.0.0)（历史稳定版）
 - 已发布版本的 Release 附件包含 Windows、WebGL 和 Android 测试包，以及 SHA-256 校验文件。
 - `v1.3.0` Android APK 已由作者在真实设备上完成基本验收。
-- v1.4.0 尚未发布；Windows 候选包已构建，Android 自动构建在本地 Player DAG 阶段卡住且未产出 APK，真机验收未执行。
+- v1.4.0 尚未发布；Windows 候选包与 Android 候选 APK 均已构建，当前没有连接 Android 设备，真机验收未执行。
 
 ## 操作
 
@@ -125,7 +131,7 @@ docs/
 - 发布边界：`30/30 PASS`，覆盖 Main 场景、对象池、配置、Boss/导演配置、目标选择、版本和平台设置
 - Windows：v1.4.0 候选包启动与受控 Runtime 冒烟通过，详见 [v1.4.0 验证记录](docs/devlogs/22-v1.4.0-build-verification.md)
 - WebGL：本轮未构建
-- Android：自动构建在本地 Player DAG 阶段卡住且未产出 APK，真机验收未执行
+- Android：候选 APK 构建成功（0 error，约 51.7 MB），当前无连接设备，真机验收未执行
 - 当前没有 v1.4.0 GitHub Release；不以候选包冒充已发布版本
 
 详细过程与适用边界见 [v1.3.0 验证证据](docs/test-results/v1.3.0/README.md)。
