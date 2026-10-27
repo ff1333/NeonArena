@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
         pauseRestartButton.onClick.AddListener(RestartRun);
         restartButton.onClick.AddListener(RestartRun);
         gameObject.AddComponent<BossEncounter>().Initialize(this, shooter, playerHealth, progress, spawner, upgradeController);
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        gameObject.AddComponent<CombatDebugOverlay>();
+#endif
     }
 
     private void Start()
