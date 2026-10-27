@@ -34,7 +34,7 @@ When the player is at or below 35% health and has just taken heavy damage, new s
 
 ### Debug and testability
 
-- Development overlay (`F3` on desktop) shows the current boss action, candidate scores, cooldowns, repeat flags, pressure, tier, interval, cap, batch and recovery timer.
+- Development overlay (`F3` in Editor or Development Build) shows the current boss action, candidate scores, cooldowns, repeat flags, pressure, tier, interval, cap, batch and recovery timer.
 - PlayMode coverage increased from 6 to 18 tests.
 - Release boundary verification increased from 24 to 30 checks, including AI config presence, six valid boss actions, scoring availability, director bounds and spawn-cap clamping.
 
@@ -48,6 +48,9 @@ When the player is at or below 35% health and has just taken heavy damage, new s
 
 - PlayMode: `18/18 PASS`
 - Release boundary: `30/30 PASS`
+- Windows automated full run: victory at 880s (level 17, six weapons, 48/220 HP)
+- Windows build: 0 errors; boss/combat smoke PASS
+- Android candidate APK: built, debug-signed, no device test
 - Unity: `6000.3.18f1`
 - Platform build and device evidence: see [v1.4.0 verification](../devlogs/22-v1.4.0-build-verification.md)
 

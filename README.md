@@ -129,7 +129,7 @@ docs/
 
 - PlayMode：`18/18 PASS`，覆盖原六武器闭环、Boss 六行为、冷却/重复惩罚、靠边偏好、半血环形弹幕、导演边界与恢复窗口
 - 发布边界：`30/30 PASS`，覆盖 Main 场景、对象池、配置、Boss/导演配置、目标选择、版本和平台设置
-- Windows：v1.4.0 候选包启动与受控 Runtime 冒烟通过，详见 [v1.4.0 验证记录](docs/devlogs/22-v1.4.0-build-verification.md)
+- Windows：v1.4.0 候选包启动、首领/战斗冒烟和自动完整通关均通过，详见 [v1.4.0 验证记录](docs/devlogs/22-v1.4.0-build-verification.md)
 - WebGL：已尝试构建，在本地 Player DAG 阶段停滞且无产物
 - Android：候选 APK 构建成功（0 error，约 51.7 MB，debug 签名），当前无连接设备，真机验收未执行
 - 当前没有 v1.4.0 GitHub Release；不以候选包冒充已发布版本
