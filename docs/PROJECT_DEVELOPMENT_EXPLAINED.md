@@ -830,7 +830,7 @@ Health.Damaged / EnemyController.DiedGlobally
 - 发布边界 `30/30` 通过。
 - Windows 候选包构建 `0 error`，受控首领画面和战斗冒烟通过。
 - Windows 自动首领练习从 42 点生命开始，使用固定自动规避，在约 23 秒被一次范围攻击击杀。日志已保留为 `NEON_BOSS_PRACTICE_FAIL`，不能写成人工通关。
-- Android 两次自动构建都在本地 Player DAG 阶段卡住，没有产出 APK；WebGL 本轮未构建。
+- Android 三次自动构建都在本地 Player DAG 阶段卡住（含清理旧 DAG 后重试），没有产出 APK；WebGL 本轮未构建。
 - Draft PR #17 已创建，但尚未合并或发布。
 - 作者 Windows/Android 真机验收仍是发布前待办。
 

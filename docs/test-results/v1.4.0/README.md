@@ -43,7 +43,7 @@ Windows 候选包：
 | 平台 | 构建 | 运行时检查 | 错误 | 备注 |
 |---|---|---|---:|---|
 | Windows | PASS | 首领与战斗冒烟 PASS | 0 | 全量构建 1 条已知 Sprite Tiling 导入提示；增量总结 0 警告 |
-| Android | BLOCKED | 未执行 |  | 两次自动构建都在本地 Player DAG 阶段卡住，没有 APK；不是构建通过 |
+| Android | BLOCKED | 未执行 |  | 三次自动构建都在本地 Player DAG 阶段卡住（含清理旧 DAG 后重试），没有 APK；不是构建通过 |
 | WebGL | NOT RUN | 未执行 |  | 本轮优先验证 Windows 与 Android |
 
 ## Git / PR
