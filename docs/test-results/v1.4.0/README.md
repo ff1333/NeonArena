@@ -1,11 +1,11 @@
 # v1.4.0 验证证据
 
-日期：2026-10-27。执行者：AI 辅助工具 + Unity Test Framework，不是作者手动试玩记录。
+日期：2026-10-28。执行者：AI 辅助工具 + Unity Test Framework，不是作者手动试玩记录。
 
 ## 自动逻辑验证
 
-- `PlayMode-results.xml`：18 项通过，0 失败，总耗时 38.47 秒。
-- 发布边界：30 项通过，0 失败，见 [构建验证日志](../../devlogs/22-v1.4.0-build-verification.md)。
+- `PlayMode-results.xml`：20 项通过，0 失败，总耗时 38.28 秒。
+- 发布边界：31 项通过，0 失败，见 [构建验证日志](../../devlogs/22-v1.4.0-build-verification.md)。
 - Unity：`6000.3.18f1`。
 - 分支：`feature/intelligent-combat-ai`。
 
@@ -16,7 +16,9 @@
 - 冷却过滤、重复惩罚、远距离追击偏好、靠边区域轰炸偏好、半血环形弹幕；
 - Boss 死亡释放危险并停止决策；
 - 导演压力/间隔/上限/批次边界；
+- 十分钟进程压力与低血量防利用；
 - 残血重伤恢复窗口、恢复冷却、敌人上限；
+- 生命恢复到 55% 前不能重复恢复，回血后重新武装；
 - 设置持久化和预警躲避。
 
 ## 独立程序冒烟
@@ -46,18 +48,19 @@ Windows 候选包：
 | 平台 | 构建 | 运行时检查 | 错误 | 备注 |
 |---|---|---|---:|---|
 | Windows | PASS | 首领与战斗冒烟 PASS | 0 | 全量构建 1 条已知 Sprite Tiling 导入提示；增量总结 0 警告 |
-| Android | PASS | 未执行 | 0 | APK 51,728,735 bytes；1 warning；没有连接设备 |
+| Android | PASS | 未执行 | 0 | APK 51,729,355 bytes；1 warning；没有连接设备 |
 | WebGL | BLOCKED | 未执行 |  | 已尝试构建，在本地 Player DAG 阶段停滞且无产物 |
 
 ## Git / PR
 
 - 分支：`feature/intelligent-combat-ai`
 - 发布候选 PR：<https://github.com/ff1333/NeonArena/pull/17>（Draft）
-- 未合并；已建立不公开的 Draft Release（id `425471979`），上传 Windows ZIP、Android APK 和 SHA-256 校验文件。
+- 未合并；已建立不公开的 Draft Release（id `425471979`），其中旧附件来自防利用修复前构建，尚待替换。
 - 未发布公开的 `v1.4.0` GitHub Release；等待作者试玩与发布决定。
-- Windows 候选包：`Builds/Release/NeonArena-v1.4.0-Windows.zip`（53,514,909 bytes）。
+- Windows 候选包：`Builds/Release/NeonArena-v1.4.0-Windows.zip`（53,515,434 bytes）。
 - Android 构建证据：[build-summary](Android-build-summary.txt)、[SHA-256](Android-SHA256SUMS.txt)、[manifest/signature](Android-verify.txt)。
-- Android 候选 APK：`Builds/Android/v1.4.0/NeonArenaRebuild-v1.4.0.apk`（51,728,735 bytes，本地构建产物，未提交到 Git）。
+- Android 候选 APK：`Builds/Android/v1.4.0/NeonArenaRebuild-v1.4.0.apk`（51,729,355 bytes，本地构建产物，未提交到 Git）。
+- Draft Release 中现有附件来自修复前构建，必须替换为以上新包后才能公开发布。
 - 两个候选包的发布校验和：[SHA256SUMS.txt](SHA256SUMS.txt)。
 - APK 为 **Android Debug** 证书签名，不是生产签名；当前没有连接设备，未安装、未真机测试。
 

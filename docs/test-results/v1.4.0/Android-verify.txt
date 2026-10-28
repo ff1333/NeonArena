@@ -9,8 +9,8 @@ minSdkVersion: 25
 targetSdkVersion: 36
 application-label: Neon Arena Rebuild
 
-APK size: 51,728,735 bytes
-SHA-256: a8060d7c7275312b93dc7acca8a5bea89b6e1318070333abe12949d2901cc763
+APK size: 51,729,355 bytes
+SHA-256: 0a08573111497d5d22d42175f24e78bc4c3174a4e3c3a1d7160f5de2f6fc4e42
 
 Signature:
 Signer #1 certificate DN: C=US, O=Android, CN=Android Debug

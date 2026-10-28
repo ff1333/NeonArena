@@ -46,8 +46,8 @@ When the player is at or below 35% health and has just taken heavy damage, new s
 
 ## Verification
 
-- PlayMode: `18/18 PASS`
-- Release boundary: `30/30 PASS`
+- PlayMode: `20/20 PASS`
+- Release boundary: `31/31 PASS`
 - Windows automated full run: victory at 880s (level 17, six weapons, 48/220 HP)
 - Windows build: 0 errors; boss/combat smoke PASS
 - Android candidate APK: built, debug-signed, no device test
@@ -59,6 +59,7 @@ When the player is at or below 35% health and has just taken heavy damage, new s
 - Automatic tests prove rules and bounds, not final game feel.
 - Boss and director weights still need broader manual playtesting.
 - Windows candidate runtime smoke passes; the fixed autopilot boss practice failed at 42 starting HP and is recorded as a limitation, not a manual clear.
+- The director now has a monotonic ten-minute progression floor, bounded adaptive relief, and recovery rearming above 55% health, preventing deliberate low-health difficulty locking.
 - Android v1.4.0 candidate APK builds successfully with the local Android Debug certificate, but no device is connected; installation, production signing and device verification are not done.
 - WebGL build was attempted but stalled in the local Player DAG stage and produced no artifact.
 - The game remains a single-arena, single-player prototype without progression saving or online play.
