@@ -28,7 +28,7 @@ Windows 候选包：
 - `NEON_CAMPAIGN_SMOKE_PASS stage=MiniFight`：六武器、首领生成和首领画面；
 - `NEON_POLISH_FLOW_PASS weapons=1 enemyStyles=3 pooledTrails=clear`：开局武器、三类敌人外观和投射物轨迹复用；
 - `NEON_PRESENTATION_SMOKE_PASS`：首领/战斗截图成功；
-- `NEON_FULL_RUN_VICTORY time=880.0 level=17 weapons=6 hp=48/220`：自动策略完成六武器、小首领、金色奖励、最终首领和胜利，日志见 [Windows-fullrun.txt](Windows-fullrun.txt)。
+- `NEON_FULL_RUN_VICTORY time=880.0 level=17 weapons=6 hp=48/220`：修复前候选曾由自动策略完成六武器、小首领、金色奖励、最终首领和胜利，日志见 [Windows-fullrun.txt](Windows-fullrun.txt)。修复后新包只重新执行了小首领流程冒烟，不能把这条旧日志写成新包完整通关。
 
 自动完整通关证明流程可完成，但仍不是人工试玩。它消耗了接近 900 秒的内部预算，且不能证明可读性、手感和 Android 触屏。
 

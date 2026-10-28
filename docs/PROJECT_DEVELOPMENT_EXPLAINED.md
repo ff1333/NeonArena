@@ -842,7 +842,7 @@ Health.Damaged / EnemyController.DiedGlobally
 
 - PlayMode `20/20` 通过，XML 证据在 `docs/test-results/v1.4.0/PlayMode-results.xml`。
 - 发布边界 `31/31` 通过。
-- Windows 候选包构建 `0 error`，受控首领画面、战斗冒烟和自动完整通关通过；自动通关在 880 秒、17 级、六武器、48/220 生命时胜利。
+- 防利用修复后的 Windows 候选包构建 `0 error`，独立小首领流程冒烟通过。880 秒自动完整通关来自修复前候选，只作为完整流程历史证据，不冒充新包的完整通关。
 - Android 候选 APK 已构建成功：约 51.7 MB，0 error、1 warning；构建耗时 3 分 42 秒，versionCode 5。
 - APK 使用本地 Android Debug 证书签名，不是生产签名；当前没有连接设备，未安装，因此不把构建成功写成真机通过。
 - Windows 自动首领练习从 42 点生命开始，使用固定自动规避，在约 23 秒被一次范围攻击击杀。日志已保留为 `NEON_BOSS_PRACTICE_FAIL`，不能写成人工通关。
