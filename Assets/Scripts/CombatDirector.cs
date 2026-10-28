@@ -17,9 +17,14 @@ public sealed class CombatDirector : MonoBehaviour
     private CombatDirectorModel model;
     private Health playerHealth;
     private PlayerShooter shooter;
+    private float runStartTime;
 
     public CombatDirectorConfig Config => config;
     public float Pressure => model != null ? model.Output.Pressure : 0f;
+    public float ProgressionPressure =>
+        model != null ? model.Output.ProgressionPressure : 0f;
+    public float MinimumPressure =>
+        model != null ? model.Output.MinimumPressure : 0f;
     public int DifficultyTier => model != null ? model.Output.DifficultyTier : 0;
     public float CurrentSpawnInterval =>
         model != null ? model.Output.SpawnInterval : 1.5f;
@@ -28,6 +33,7 @@ public sealed class CombatDirector : MonoBehaviour
     public int CurrentBatch =>
         model != null ? model.Output.BatchCount : 1;
     public bool IsRecovering => model != null && model.Output.Recovering;
+    public bool RecoveryArmed => model != null && model.Output.RecoveryArmed;
     public bool SpawnsSuppressed =>
         model != null && model.Output.SuppressSpawns;
     public float RecoveryRemaining =>
@@ -51,6 +57,7 @@ public sealed class CombatDirector : MonoBehaviour
         }
 
         model = new CombatDirectorModel(config);
+        runStartTime = Time.time;
         Subscribe();
     }
 
@@ -100,6 +107,7 @@ public sealed class CombatDirector : MonoBehaviour
         CombatDirectorInput input = new CombatDirectorInput(
             now,
             Time.deltaTime,
+            Mathf.Max(0f, now - runStartTime),
             playerHealth.Max > 0f ? playerHealth.Current / playerHealth.Max : 0f,
             RecentDamageFraction,
             killTimes.Count / KillRateWindow,

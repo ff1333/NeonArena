@@ -142,6 +142,7 @@ public sealed class CombatAITests
             output = model.Step(new CombatDirectorInput(
                 i * 0.5f,
                 0.5f,
+                config.TimeToMaximumProgression,
                 1f,
                 0f,
                 2f,
@@ -158,6 +159,40 @@ public sealed class CombatAITests
     }
 
     [Test]
+    public void LowHealthCannotHoldLateRunAtOpeningDifficulty()
+    {
+        CombatDirectorConfig config = CombatDirectorConfig.CreateDefault();
+        CombatDirectorModel model = new CombatDirectorModel(config);
+        CombatDirectorOutput output = model.Output;
+
+        for (int i = 0; i < 4; i++)
+        {
+            output = model.Step(new CombatDirectorInput(
+                i * 0.5f,
+                0.5f,
+                config.TimeToMaximumProgression,
+                0.2f,
+                0f,
+                0f,
+                0f,
+                0,
+                output.EnemyCap));
+        }
+
+        Assert.That(
+            output.ProgressionPressure,
+            Is.EqualTo(config.MaximumProgressionPressure).Within(0.001f));
+        Assert.That(
+            output.MinimumPressure,
+            Is.EqualTo(
+                config.MaximumProgressionPressure -
+                config.MaximumAdaptiveRelief).Within(0.001f));
+        Assert.That(
+            output.Pressure,
+            Is.GreaterThanOrEqualTo(config.MaximumProgressionPressure - 0.001f));
+    }
+
+    [Test]
     public void HeavyDamageAtLowHealthCreatesBoundedRecoveryWindow()
     {
         CombatDirectorConfig config = CombatDirectorConfig.CreateDefault();
@@ -165,6 +200,7 @@ public sealed class CombatAITests
         CombatDirectorOutput output = model.Step(new CombatDirectorInput(
             1f,
             0.25f,
+            1f,
             0.2f,
             0.4f,
             0f,
@@ -180,6 +216,7 @@ public sealed class CombatAITests
         output = model.Step(new CombatDirectorInput(
             1.25f + config.RecoveryDuration,
             0.25f,
+            1.25f + config.RecoveryDuration,
             0.2f,
             0.4f,
             0f,
@@ -198,10 +235,11 @@ public sealed class CombatAITests
         CombatDirectorConfig config = CombatDirectorConfig.CreateDefault();
         CombatDirectorModel model = new CombatDirectorModel(config);
         model.Step(new CombatDirectorInput(
-            0f, 0.1f, 0.2f, 0.5f, 0f, 0f, 10, 14));
+            0f, 0.1f, 0f, 0.2f, 0.5f, 0f, 0f, 10, 14));
         model.Step(new CombatDirectorInput(
             config.RecoveryDuration + 0.1f,
             0.1f,
+            config.RecoveryDuration + 0.1f,
             0.2f,
             0.5f,
             0f,
@@ -212,6 +250,7 @@ public sealed class CombatAITests
         CombatDirectorOutput output = model.Step(new CombatDirectorInput(
             config.RecoveryDuration + 0.2f,
             0.1f,
+            config.RecoveryDuration + 0.2f,
             0.2f,
             0.5f,
             0f,
@@ -220,6 +259,58 @@ public sealed class CombatAITests
             config.MinimumEnemyCap));
 
         Assert.That(output.Recovering, Is.False);
+        Assert.That(output.RecoveryArmed, Is.False);
+    }
+
+    [Test]
+    public void RecoveryRequiresHealthToRearmBeforeRetriggering()
+    {
+        CombatDirectorConfig config = CombatDirectorConfig.CreateDefault();
+        CombatDirectorModel model = new CombatDirectorModel(config);
+        model.Step(new CombatDirectorInput(
+            0f, 0.1f, 0f, 0.2f, 0.5f, 0f, 0f, 4, 10));
+
+        float afterCooldown =
+            config.RecoveryDuration + config.RecoveryCooldown + 0.2f;
+        CombatDirectorOutput stillLow = model.Step(new CombatDirectorInput(
+            afterCooldown,
+            0.1f,
+            afterCooldown,
+            0.2f,
+            0.5f,
+            0f,
+            0f,
+            4,
+            10));
+
+        Assert.That(stillLow.Recovering, Is.False);
+        Assert.That(stillLow.RecoveryArmed, Is.False);
+
+        CombatDirectorOutput rearmed = model.Step(new CombatDirectorInput(
+            afterCooldown + 0.1f,
+            0.1f,
+            afterCooldown + 0.1f,
+            config.RecoveryRearmHealthThreshold + 0.05f,
+            0f,
+            0f,
+            0f,
+            4,
+            10));
+        Assert.That(rearmed.RecoveryArmed, Is.True);
+
+        CombatDirectorOutput retriggered = model.Step(new CombatDirectorInput(
+            afterCooldown + 0.2f,
+            0.1f,
+            afterCooldown + 0.2f,
+            0.2f,
+            0.5f,
+            0f,
+            0f,
+            4,
+            10));
+
+        Assert.That(retriggered.Recovering, Is.True);
+        Assert.That(retriggered.RecoveryArmed, Is.False);
     }
 
     [UnityTest]

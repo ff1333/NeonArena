@@ -106,7 +106,10 @@ public sealed class CombatDebugOverlay : MonoBehaviour
                 $"batch={director.CurrentBatch}",
                 bodyStyle);
             GUILayout.Label(
-                $"  damage={director.RecentDamageFraction:P0}  " +
+                $"  progression={director.ProgressionPressure:0.00}  " +
+                $"floor={director.MinimumPressure:0.00}  " +
+                $"armed={director.RecoveryArmed}  " +
+                $"damage={director.RecentDamageFraction:P0}  " +
                 $"recovery={director.RecoveryRemaining:0.0}s  " +
                 $"active={EnemyRegistry.ActiveCount}",
                 bodyStyle);

@@ -3,9 +3,16 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Neon Arena/Combat Director Config")]
 public sealed class CombatDirectorConfig : ScriptableObject
 {
-    [Header("Pressure Inputs")]
-    [SerializeField, Range(0f, 1f)] private float basePressure = 0.25f;
-    [SerializeField, Min(0f)] private float healthWeight = 0.55f;
+    [Header("Progression Pressure")]
+    [SerializeField, Range(0f, 1f)] private float basePressure = 0.15f;
+    [SerializeField, Range(0f, 1f)] private float maximumProgressionPressure = 0.75f;
+    [SerializeField, Min(1f)] private float timeToMaximumProgression = 600f;
+    [SerializeField, Range(0f, 1f)] private float maximumAdaptiveBonus = 0.25f;
+    [SerializeField, Range(0f, 1f)] private float maximumAdaptiveRelief = 0.15f;
+
+    [Header("Adaptive Pressure Inputs")]
+    [SerializeField, Range(0f, 1f)] private float healthBoostThreshold = 0.6f;
+    [SerializeField, Min(0f)] private float healthWeight = 0.1f;
     [SerializeField, Min(0f)] private float weaponWeight = 0.18f;
     [SerializeField, Min(0f)] private float killRateWeight = 0.22f;
     [SerializeField, Min(0f)] private float crowdWeight = 0.2f;
@@ -18,6 +25,7 @@ public sealed class CombatDirectorConfig : ScriptableObject
 
     [Header("Recovery")]
     [SerializeField, Range(0.05f, 0.95f)] private float recoveryHealthThreshold = 0.35f;
+    [SerializeField, Range(0.05f, 1f)] private float recoveryRearmHealthThreshold = 0.55f;
     [SerializeField, Min(0.5f)] private float recoveryDuration = 3.5f;
     [SerializeField, Min(0f)] private float recoveryCooldown = 7f;
 
@@ -35,6 +43,11 @@ public sealed class CombatDirectorConfig : ScriptableObject
         CreateDefaultEnemyWeights();
 
     public float BasePressure => basePressure;
+    public float MaximumProgressionPressure => maximumProgressionPressure;
+    public float TimeToMaximumProgression => timeToMaximumProgression;
+    public float MaximumAdaptiveBonus => maximumAdaptiveBonus;
+    public float MaximumAdaptiveRelief => maximumAdaptiveRelief;
+    public float HealthBoostThreshold => healthBoostThreshold;
     public float HealthWeight => healthWeight;
     public float WeaponWeight => weaponWeight;
     public float KillRateWeight => killRateWeight;
@@ -44,6 +57,7 @@ public sealed class CombatDirectorConfig : ScriptableObject
     public float RecentDamageWindow => recentDamageWindow;
     public float HeavyDamageFraction => heavyDamageFraction;
     public float RecoveryHealthThreshold => recoveryHealthThreshold;
+    public float RecoveryRearmHealthThreshold => recoveryRearmHealthThreshold;
     public float RecoveryDuration => recoveryDuration;
     public float RecoveryCooldown => recoveryCooldown;
     public float PressureSmoothing => pressureSmoothing;

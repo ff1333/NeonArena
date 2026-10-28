@@ -473,6 +473,17 @@ public static class ReleasePipeline
 
         if (directorConfig != null)
         {
+            bool progressionConfigured =
+                directorConfig.MaximumProgressionPressure >=
+                    directorConfig.BasePressure &&
+                directorConfig.TimeToMaximumProgression > 0f &&
+                directorConfig.MaximumAdaptiveRelief <
+                    directorConfig.MaximumProgressionPressure &&
+                directorConfig.RecoveryRearmHealthThreshold >
+                    directorConfig.RecoveryHealthThreshold;
+            Verify("Combat director has anti-exploit progression bounds",
+                progressionConfigured, passed, failed);
+
             CombatDirectorModel model =
                 new CombatDirectorModel(directorConfig);
             CombatDirectorOutput output = model.Output;
@@ -490,6 +501,7 @@ public static class ReleasePipeline
                 output = model.Step(new CombatDirectorInput(
                     i * 0.5f,
                     0.5f,
+                    directorConfig.TimeToMaximumProgression,
                     1f,
                     0f,
                     2f,

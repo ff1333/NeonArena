@@ -3,6 +3,7 @@ public readonly struct CombatDirectorInput
     public CombatDirectorInput(
         float now,
         float deltaTime,
+        float elapsedRunTime,
         float playerHealthRatio,
         float recentDamageFraction,
         float killsPerSecond,
@@ -12,6 +13,7 @@ public readonly struct CombatDirectorInput
     {
         Now = now;
         DeltaTime = deltaTime;
+        ElapsedRunTime = elapsedRunTime;
         PlayerHealthRatio = playerHealthRatio;
         RecentDamageFraction = recentDamageFraction;
         KillsPerSecond = killsPerSecond;
@@ -22,6 +24,7 @@ public readonly struct CombatDirectorInput
 
     public float Now { get; }
     public float DeltaTime { get; }
+    public float ElapsedRunTime { get; }
     public float PlayerHealthRatio { get; }
     public float RecentDamageFraction { get; }
     public float KillsPerSecond { get; }

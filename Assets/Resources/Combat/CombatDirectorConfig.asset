@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59903eee8a8966741abee50d7180cb29, type: 3}
   m_Name: CombatDirectorConfig
   m_EditorClassIdentifier: NeonArena.Runtime::CombatDirectorConfig
-  basePressure: 0.25
-  healthWeight: 0.55
+  basePressure: 0.15
+  maximumProgressionPressure: 0.75
+  timeToMaximumProgression: 600
+  maximumAdaptiveBonus: 0.25
+  maximumAdaptiveRelief: 0.15
+  healthBoostThreshold: 0.6
+  healthWeight: 0.1
   weaponWeight: 0.18
   killRateWeight: 0.22
   crowdWeight: 0.2
@@ -22,6 +27,7 @@ MonoBehaviour:
   recentDamageWindow: 3
   heavyDamageFraction: 0.18
   recoveryHealthThreshold: 0.35
+  recoveryRearmHealthThreshold: 0.55
   recoveryDuration: 3.5
   recoveryCooldown: 7
   pressureSmoothing: 1.2
