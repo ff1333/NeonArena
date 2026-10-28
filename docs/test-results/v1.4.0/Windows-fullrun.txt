@@ -1,0 +1,24 @@
+Windows v1.4.0 full-run automation
+Unity 6000.3.18f1
+Candidate: Builds/Windows/v1.4.0/NeonArenaRebuild.exe
+Mode: -neonPortfolioVideo -neonPortfolioShot fullrun
+
+Result: PASS (internal 900s timeout)
+
+NEON_FULL_RUN_START level=1 weapons=1 hp=100/100
+NEON_FULL_RUN_PROGRESS time=79.7 level=6 weapons=3 hp=55/115
+NEON_FULL_RUN_PROGRESS time=257.5 level=10 weapons=4 hp=85/145
+NEON_FULL_RUN_PROGRESS time=442.6 level=12 weapons=5 hp=95/145
+NEON_FULL_RUN_STAGE stage=MiniIntro time=803.0 level=15 weapons=6 hp=84/160
+NEON_FULL_RUN_STAGE stage=MiniFight time=805.0 level=15 weapons=6 hp=84/160
+NEON_FULL_RUN_STAGE stage=Rewards time=831.0 level=17 weapons=6 hp=66/160
+NEON_FULL_RUN_STAGE stage=FinalIntro time=834.0 level=17 weapons=6 hp=126/220
+NEON_FULL_RUN_STAGE stage=FinalFight time=836.0 level=17 weapons=6 hp=126/220
+NEON_FULL_RUN_VICTORY time=880.0 level=17 weapons=6 hp=48/220
+NEON_PORTFOLIO_SHOT_PASS fullrun
+
+Interpretation:
+- This is an automated steering/upgrade policy, not a human playtest.
+- It proves the complete flow can finish under the new boss AI and combat director.
+- It does not prove readability, fun, Android touch behavior, or multi-build balance.
+- The run used almost the whole 900s budget; manual players may progress faster.

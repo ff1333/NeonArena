@@ -1,0 +1,18 @@
+Windows v1.4.0 candidate runtime smoke
+Unity 6000.3.18f1
+Executable: Builds/Windows/v1.4.0/NeonArenaRebuild.exe
+
+[PASS] Boss capture
+NEON_CAMPAIGN_SMOKE_PASS stage=MiniFight
+NEON_PRESENTATION_SMOKE_PASS docs/test-results/v1.4.0/native/v1.4.0-boss.png
+
+[PASS] Starter flow, three enemy appearances, pooled trails
+NEON_POLISH_FLOW_PASS weapons=1 enemyStyles=3 pooledTrails=clear
+NEON_PRESENTATION_SMOKE_PASS docs/test-results/v1.4.0/native/v1.4.0-combat.png
+
+[EXPECTED LIMIT] Automated boss practice
+NEON_BOSS_PRACTICE_HIT time=2.27 hp=18/100 bossDistance=1.06 hazards=[]
+NEON_BOSS_PRACTICE_FAIL time=23.3 stage=MiniFight hp=0/100
+
+The practice tool starts at 42 HP and uses a fixed automatic dodge policy.
+Its failure is not a manual clear and is not hidden as a pass.

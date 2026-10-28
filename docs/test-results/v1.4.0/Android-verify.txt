@@ -1,0 +1,21 @@
+Android v1.4.0 candidate APK verification
+Unity 6000.3.18f1
+Build tools 36.0.0
+
+package: com.ff1333.neonarenarebuild
+versionCode: 5
+versionName: 1.4.0
+minSdkVersion: 25
+targetSdkVersion: 36
+application-label: Neon Arena Rebuild
+
+APK size: 51,729,355 bytes
+SHA-256: 0a08573111497d5d22d42175f24e78bc4c3174a4e3c3a1d7160f5de2f6fc4e42
+
+Signature:
+Signer #1 certificate DN: C=US, O=Android, CN=Android Debug
+Signer #1 certificate SHA-256 digest:
+00d408cf208e0d9b093a916850dc35c7a45b87512e179f404e2e0b3127f7e7b5
+
+This is a debug-signed local candidate, not a production/Play Store signing key.
+No Android device was connected; installation and device testing were not executed.

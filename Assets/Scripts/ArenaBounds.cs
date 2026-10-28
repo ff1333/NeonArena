@@ -34,6 +34,20 @@ public class ArenaBounds : MonoBehaviour
         );
     }
 
+    public float EdgeProximity(Vector2 point)
+    {
+        Vector2 center = (Minimum + Maximum) * 0.5f;
+        Vector2 half = (Maximum - Minimum) * 0.5f;
+        if (half.x <= 0.001f || half.y <= 0.001f)
+        {
+            return 1f;
+        }
+
+        float normalizedX = 1f - Mathf.Abs(point.x - center.x) / half.x;
+        float normalizedY = 1f - Mathf.Abs(point.y - center.y) / half.y;
+        return 1f - Mathf.Clamp01(Mathf.Min(normalizedX, normalizedY));
+    }
+
     public bool Contains(Vector2 point, float padding)
     {
         Vector2 min = Minimum + Vector2.one * padding;

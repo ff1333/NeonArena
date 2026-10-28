@@ -25,18 +25,6 @@ public sealed class PresentationSmokeCapture : MonoBehaviour
         typeof(BossHazard).GetField(
             "velocity",
             BindingFlags.Instance | BindingFlags.NonPublic);
-    private static readonly FieldInfo BossLockedDirectionField =
-        typeof(BossAgent).GetField(
-            "lockedDirection",
-            BindingFlags.Instance | BindingFlags.NonPublic);
-    private static readonly FieldInfo BossAttackIndexField =
-        typeof(BossAgent).GetField(
-            "attackIndex",
-            BindingFlags.Instance | BindingFlags.NonPublic);
-    private static readonly FieldInfo BossDashUntilField =
-        typeof(BossAgent).GetField(
-            "dashUntil",
-            BindingFlags.Instance | BindingFlags.NonPublic);
     private static readonly FieldInfo EnemyPreparingDashField =
         typeof(EnemyController).GetField(
             "isPreparingDash",
@@ -631,12 +619,10 @@ public sealed class PresentationSmokeCapture : MonoBehaviour
         if (boss != null)
         {
             var bossPosition = (Vector2)boss.transform.position;
-            if (BossDashUntilField != null &&
-                BossLockedDirectionField != null &&
-                (float)BossDashUntilField.GetValue(boss) > Time.time)
+            if (boss.CurrentAction == BossActionType.PredictiveDash &&
+                boss.LockedDirection.sqrMagnitude > .01f)
             {
-                var lockedDirection =
-                    (Vector2)BossLockedDirectionField.GetValue(boss);
+                var lockedDirection = boss.LockedDirection;
                 var dashEnd = bossPosition+lockedDirection*(boss.IsFinal?11f:8f);
                 if (PointSegmentDistance(position,bossPosition,dashEnd) < 3f)
                 {
@@ -656,21 +642,18 @@ public sealed class PresentationSmokeCapture : MonoBehaviour
         }
 
         if (boss != null && boss.IsPreparing &&
-            BossLockedDirectionField != null && BossAttackIndexField != null)
+            boss.LockedDirection.sqrMagnitude > .01f &&
+            (boss.CurrentAction == BossActionType.PredictiveDash ||
+             boss.CurrentAction == BossActionType.FanVolley))
         {
-            var attackIndex = (int)BossAttackIndexField.GetValue(boss);
-            if (attackIndex%3 != 1)
+            var lockedDirection = boss.LockedDirection;
+            var bossPosition = (Vector2)boss.transform.position;
+            var lineEnd = bossPosition+lockedDirection*13f;
+            if (PointSegmentDistance(position,bossPosition,lineEnd) < 2.2f)
             {
-                var lockedDirection =
-                    (Vector2)BossLockedDirectionField.GetValue(boss);
-                var bossPosition = (Vector2)boss.transform.position;
-                var lineEnd = bossPosition+lockedDirection*13f;
-                if (PointSegmentDistance(position,bossPosition,lineEnd) < 2.2f)
-                {
-                    var perpendicular = Vector2.Perpendicular(lockedDirection).normalized;
-                    return ChooseBoundarySafeDirection(
-                        position,perpendicular,-perpendicular,bounds);
-                }
+                var perpendicular = Vector2.Perpendicular(lockedDirection).normalized;
+                return ChooseBoundarySafeDirection(
+                    position,perpendicular,-perpendicular,bounds);
             }
         }
         return Vector2.zero;
@@ -832,13 +815,12 @@ public sealed class PresentationSmokeCapture : MonoBehaviour
             var radial = (candidate - bossPosition).normalized;
             score += Mathf.Abs(Vector2.Dot(direction,Vector2.Perpendicular(radial))) * 12f;
 
-            var attackIndex = BossAttackIndexField != null
-                ? (int)BossAttackIndexField.GetValue(encounter.ActiveBoss)
-                : 1;
-            if (attackIndex%3 != 1 && BossLockedDirectionField != null)
+            var boss = encounter.ActiveBoss;
+            if (boss.LockedDirection.sqrMagnitude > .01f &&
+                (boss.CurrentAction == BossActionType.PredictiveDash ||
+                 boss.CurrentAction == BossActionType.FanVolley))
             {
-                var lockedDirection =
-                    (Vector2)BossLockedDirectionField.GetValue(encounter.ActiveBoss);
+                var lockedDirection = boss.LockedDirection;
                 var lineEnd = bossPosition+lockedDirection*13f;
                 var lineDistance = PointSegmentDistance(candidate,bossPosition,lineEnd);
                 var movementLineDistance = Mathf.Min(

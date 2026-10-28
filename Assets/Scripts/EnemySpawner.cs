@@ -38,8 +38,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField, Min(0f)] private float warningDuration = 1.5f;
 
     private Transform player;
+    private CombatDirector director;
     private float nextSpawnTime;
     private float runStartTime;
+
+    public CombatDirector Director => director;
 
     private void Start()
     {
@@ -75,6 +78,17 @@ public class EnemySpawner : MonoBehaviour
                 return;
             }
         }
+
+        director = GetComponent<CombatDirector>();
+        if (director == null)
+        {
+            director = gameObject.AddComponent<CombatDirector>();
+        }
+
+        director.Initialize(
+            null,
+            playerObject.GetComponent<Health>(),
+            playerObject.GetComponent<PlayerShooter>());
     }
 
     private void OnEnable()
@@ -85,18 +99,47 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (player == null || Time.time < nextSpawnTime)
+        if (player == null)
+        {
+            return;
+        }
+
+        if (director != null && director.SpawnsSuppressed)
+        {
+            nextSpawnTime = Time.time + 0.25f;
+            return;
+        }
+
+        if (Time.time < nextSpawnTime)
         {
             return;
         }
 
         float elapsed = Time.time - runStartTime;
-        float currentInterval = Mathf.Max(
+        float timeInterval = Mathf.Max(
             minimumInterval,
             startingInterval - elapsed * intervalDecreasePerSecond);
+        float currentInterval = director != null
+            ? director.CurrentSpawnInterval
+            : timeInterval;
+        int cap = director != null ? director.CurrentEnemyCap : int.MaxValue;
+        int requestedBatch = director != null ? director.CurrentBatch : 1;
+        int allowedBatch = CombatDirector.ClampBatchToCapacity(
+            EnemyRegistry.ActiveCount,
+            cap,
+            requestedBatch);
+
+        if (allowedBatch <= 0)
+        {
+            nextSpawnTime = Time.time + 0.25f;
+            return;
+        }
 
         nextSpawnTime = Time.time + currentInterval;
-        SpawnOne(elapsed);
+        for (int i = 0; i < allowedBatch; i++)
+        {
+            SpawnOne(elapsed);
+        }
     }
 
     private void SpawnOne(float elapsed)
@@ -132,9 +175,10 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < enemyTypes.Length; i++)
         {
             EnemySpawnEntry entry = enemyTypes[i];
-            if (elapsed >= entry.UnlockTime && entry.Weight > 0f)
+            float weight = WeightFor(entry);
+            if (elapsed >= entry.UnlockTime && weight > 0f)
             {
-                totalWeight += entry.Weight;
+                totalWeight += weight;
                 lastEligible = entry.Definition;
             }
         }
@@ -149,12 +193,13 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < enemyTypes.Length; i++)
         {
             EnemySpawnEntry entry = enemyTypes[i];
-            if (elapsed < entry.UnlockTime || entry.Weight <= 0f)
+            float weight = WeightFor(entry);
+            if (elapsed < entry.UnlockTime || weight <= 0f)
             {
                 continue;
             }
 
-            roll -= entry.Weight;
+            roll -= weight;
             if (roll <= 0f)
             {
                 return entry.Definition;
@@ -162,6 +207,19 @@ public class EnemySpawner : MonoBehaviour
         }
 
         return lastEligible;
+    }
+
+    private float WeightFor(EnemySpawnEntry entry)
+    {
+        if (entry == null || entry.Definition == null)
+        {
+            return 0f;
+        }
+
+        float multiplier = director != null
+            ? director.EnemyWeightMultiplier(entry.Definition.BehaviorType)
+            : 1f;
+        return entry.Weight * Mathf.Max(0f, multiplier);
     }
 
     private Vector3 ChooseSpawnPosition()

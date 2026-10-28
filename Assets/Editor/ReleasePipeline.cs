@@ -12,12 +12,16 @@ using UnityEngine;
 
 public static class ReleasePipeline
 {
-    public const string Version = "1.3.0";
-    private const string ReleaseBranch = "polish/v1.2.0";
+    public const string Version = "1.4.0";
+    private const string ReleaseBranch = "feature/intelligent-combat-ai";
     private const string MainScene = "Assets/Scenes/Main.unity";
     private const string Identifier = "com.ff1333.neonarenarebuild";
     private const string VerificationReport =
-        "docs/devlogs/20-v1.3.0-build-verification.md";
+        "docs/devlogs/22-v1.4.0-build-verification.md";
+    private const string BossConfigPath =
+        "Assets/Resources/Combat/BossDecisionConfig.asset";
+    private const string DirectorConfigPath =
+        "Assets/Resources/Combat/CombatDirectorConfig.asset";
     private const string ManualResultsHeading = "## Platform Builds";
 
     [MenuItem("Build/Neon Arena/Configure Release Settings")]
@@ -43,7 +47,7 @@ public static class ReleasePipeline
             NamedBuildTarget.Android,
             Identifier);
 
-        PlayerSettings.Android.bundleVersionCode = 4;
+        PlayerSettings.Android.bundleVersionCode = 5;
         PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel25;
         PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel36;
         PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
@@ -85,6 +89,7 @@ public static class ReleasePipeline
         VerifyWeaponLoadoutRule(passed, failed);
         VerifyExperiencePickupStyles(passed, failed);
         VerifyPoolExpansionAndDuplicateRelease(passed, failed);
+        VerifyCombatAIConfiguration(passed, failed);
         ResetEnemyRegistry();
         Verify("Target selection returns null with no enemies",
             TargetSelector.FindPriorityTarget(Vector2.zero, 20f, 1.5f) == null,
@@ -96,8 +101,8 @@ public static class ReleasePipeline
             PlayerSettings.productName == "Neon Arena Rebuild", passed, failed);
         Verify($"Version is {Version}",
             PlayerSettings.bundleVersion == Version, passed, failed);
-        Verify("Android version code is 4",
-            PlayerSettings.Android.bundleVersionCode == 4, passed, failed);
+        Verify("Android version code is 5",
+            PlayerSettings.Android.bundleVersionCode == 5, passed, failed);
         Verify("Android identifier is release-ready",
             PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Android) ==
             Identifier, passed, failed);
@@ -411,6 +416,121 @@ public static class ReleasePipeline
         {
             UnityEngine.Object.DestroyImmediate(testObject);
         }
+    }
+
+    private static void VerifyCombatAIConfiguration(
+        List<string> passed,
+        List<string> failed)
+    {
+        BossDecisionConfig bossConfig =
+            AssetDatabase.LoadAssetAtPath<BossDecisionConfig>(BossConfigPath);
+        Verify("Boss decision config exists", bossConfig != null, passed, failed);
+
+        bool bossConfigured = bossConfig != null &&
+                              bossConfig.Behaviors != null &&
+                              bossConfig.Behaviors.Length == 6;
+        if (bossConfigured)
+        {
+            for (int i = 0; i < bossConfig.Behaviors.Length; i++)
+            {
+                BossBehaviorTuning tuning = bossConfig.Behaviors[i];
+                bossConfigured &= tuning != null &&
+                                  tuning.Enabled &&
+                                  tuning.Cooldown >= 0f &&
+                                  tuning.Windup > 0f &&
+                                  tuning.MaximumRange >= tuning.MinimumRange;
+            }
+        }
+        Verify("Boss decision config defines six valid behaviors",
+            bossConfigured, passed, failed);
+
+        if (bossConfig != null)
+        {
+            BossUtilityBrain brain = new BossUtilityBrain(bossConfig);
+            BossDecision decision = brain.Evaluate(new BossSituation(
+                Vector2.zero,
+                Vector2.right * 8f,
+                Vector2.right * 4f,
+                0.45f,
+                0.7f,
+                0.2f,
+                5f,
+                true));
+            Verify("Boss utility brain can score all candidates",
+                decision.Scores.Count == 6 && decision.HasAction,
+                passed, failed);
+        }
+        else
+        {
+            failed.Add("Boss utility brain can score all candidates");
+        }
+
+        CombatDirectorConfig directorConfig =
+            AssetDatabase.LoadAssetAtPath<CombatDirectorConfig>(
+                DirectorConfigPath);
+        Verify("Combat director config exists", directorConfig != null,
+            passed, failed);
+
+        if (directorConfig != null)
+        {
+            bool progressionConfigured =
+                directorConfig.MaximumProgressionPressure >=
+                    directorConfig.BasePressure &&
+                directorConfig.TimeToMaximumProgression > 0f &&
+                directorConfig.MaximumAdaptiveRelief <
+                    directorConfig.MaximumProgressionPressure &&
+                directorConfig.RecoveryRearmHealthThreshold >
+                    directorConfig.RecoveryHealthThreshold;
+            Verify("Combat director has anti-exploit progression bounds",
+                progressionConfigured, passed, failed);
+
+            CombatDirectorModel model =
+                new CombatDirectorModel(directorConfig);
+            CombatDirectorOutput output = model.Output;
+            bool bounded = output.SpawnInterval >=
+                               directorConfig.FastestSpawnInterval &&
+                           output.SpawnInterval <=
+                               directorConfig.SlowestSpawnInterval &&
+                           output.EnemyCap >= directorConfig.MinimumEnemyCap &&
+                           output.EnemyCap <= directorConfig.MaximumEnemyCap &&
+                           output.BatchCount >= 0 &&
+                           output.BatchCount <= directorConfig.MaximumBatch;
+
+            for (int i = 0; i < 12; i++)
+            {
+                output = model.Step(new CombatDirectorInput(
+                    i * 0.5f,
+                    0.5f,
+                    directorConfig.TimeToMaximumProgression,
+                    1f,
+                    0f,
+                    2f,
+                    1f,
+                    i,
+                    output.EnemyCap));
+                bounded &= output.SpawnInterval >=
+                               directorConfig.FastestSpawnInterval &&
+                           output.SpawnInterval <=
+                               directorConfig.SlowestSpawnInterval &&
+                           output.EnemyCap >= directorConfig.MinimumEnemyCap &&
+                           output.EnemyCap <= directorConfig.MaximumEnemyCap &&
+                           output.BatchCount >= 0 &&
+                           output.BatchCount <= directorConfig.MaximumBatch;
+            }
+
+            Verify("Combat director output stays inside configured bounds",
+                bounded, passed, failed);
+        }
+        else
+        {
+            failed.Add("Combat director output stays inside configured bounds");
+        }
+
+        Verify("Spawn batch clamps at enemy capacity",
+            CombatDirector.ClampBatchToCapacity(0, 10, 3) == 3 &&
+            CombatDirector.ClampBatchToCapacity(8, 10, 3) == 2 &&
+            CombatDirector.ClampBatchToCapacity(10, 10, 3) == 0,
+            passed, failed);
     }
 
     private static void ResetEnemyRegistry()

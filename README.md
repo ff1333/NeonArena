@@ -2,22 +2,31 @@
 
 使用 Unity 6 与 C# 开发的 2D 生存射击作品。玩家开局从三种武器中选择一把，在有限竞技场中移动并自动射击，击败敌人获得经验，再通过三选一升级构筑最多六个武器槽位的组合。
 
-**当前正式版 v1.3.0**：集齐六武器触发小首领，击败后直接升两级、六项金色奖励选两项，再挑战最终首领并结算胜利。主菜单新增中英文和声音设置。先看 [v1.3.0 指南与开发记录](docs/V1_3_0_BOSSES_AND_SETTINGS.md) 及 [验证证据](docs/test-results/v1.3.0/README.md)。
+**v1.4.0 发布候选**：Boss 不再固定轮播技能，而由 Utility AI 根据距离、玩家速度、场地位置和自身血量选择追击、预测冲刺、弹幕、区域轰炸、半血环形弹幕或重新站位；普通战斗由有上下限的动态战斗导演调整刷怪节奏、批次和敌人组合，残血重伤后会出现有限恢复窗口。
+
+当前正式版仍为 `v1.3.0`。v1.4.0 的代码、自动测试、Windows 候选包和 Android 候选 APK 已完成，但作者 Windows/Android 手动试玩尚未完成，因此暂不合并、不发布正式 Release。先看 [v1.4.0 发布候选说明](docs/RELEASE_NOTES_v1.4.0.md)、[PR #17](https://github.com/ff1333/NeonArena/pull/17) 及 [开发与验证记录](docs/devlogs/21-v1.4.0-intelligent-combat.md)。
 
 ![v1.3.0 title](docs/test-results/v1.3.0/native/v1.3.0-title-zh.png)
 
 ![Golden rewards](docs/test-results/v1.3.0/native/v1.3.0-rewards-zh.png)
 
+v1.4 候选包中的首领战与普通战斗：
+
+| 首领战 | 战斗与经验物 |
+|---|---|
+| ![v1.4 boss](docs/test-results/v1.4.0/native/v1.4.0-boss.png) | ![v1.4 combat](docs/test-results/v1.4.0/native/v1.4.0-combat.png) |
+
 ## 下载与版本
 
 - [GitHub Release v1.3.0](https://github.com/ff1333/NeonArena/releases/tag/v1.3.0)（当前正式版，Windows / WebGL / Android）
-- [作品集演示视频](https://github.com/ff1333/NeonArena/releases/download/v1.3.0/NeonArena-v1.3.0-portfolio-720p.mp4)（中文旁白与字幕）
-- [v1.3.0 发布说明](docs/RELEASE_NOTES_v1.3.0.md)
+- [作品集演示视频](https://github.com/ff1333/NeonArena/releases/download/v1.3.0/NeonArena-v1.3.0-portfolio-720p.mp4)（v1.3.0 中文旁白与字幕）
+- [v1.4.0 Pull Request #17](https://github.com/ff1333/NeonArena/pull/17)（发布候选，等待人工验收）
+- [v1.4.0 发布候选说明](docs/RELEASE_NOTES_v1.4.0.md)
 - [GitHub Release v1.1.0](https://github.com/ff1333/NeonArena/releases/tag/v1.1.0)（历史已发布版本）
 - [GitHub Release v1.0.0](https://github.com/ff1333/NeonArena/releases/tag/v1.0.0)（历史稳定版）
-- Release 附件包含 Windows、WebGL 和 Android 测试包，以及 SHA-256 校验文件。
-- `v1.3.0` Android APK 已由作者在真实设备上完成基本验收，没有发现阻塞发布的问题；多机型兼容与长时间压力仍未覆盖。
-- Release 已提供 Windows、WebGL、Android 构建、演示视频和校验文件。
+- 已发布版本的 Release 附件包含 Windows、WebGL 和 Android 测试包，以及 SHA-256 校验文件。
+- `v1.3.0` Android APK 已由作者在真实设备上完成基本验收。
+- v1.4.0 尚未发布；Windows 候选包与 Android 候选 APK 均已构建，当前没有连接 Android 设备，真机验收未执行。
 
 ## 操作
 
@@ -39,6 +48,9 @@
 
 - 完整游戏循环：开始、移动、自动战斗、经验升级、暂停、死亡结算和重开
 - 六武器触发首领战，金色六选二强化，最终首领、胜利、重玩或退出
+- Boss Utility AI：六种可评分、冷却和重复惩罚约束的行为，按战场情境选择
+- 有边界的动态战斗导演：压力驱动刷怪间隔、批次、上限和敌人权重，残血重伤进入恢复窗口
+- 开发模式决策面板：显示 Boss 候选分数、压力、难度等级和实际刷怪参数（仅 Editor / Development Build，桌面 `F3`）
 - 默认中文，可切换英文；总音量、音乐、音效和静音设置本地保存
 - 开局武器三选一：选择完成前不计时、不刷怪，选中的武器占用第一个槽位
 - 三种数据驱动武器：Pistol、SMG、Laser，各自拥有伤害、射速、射程、弹速和颜色
@@ -71,7 +83,11 @@ Profiler 截图记录了优化前后的代表帧，但两版玩法规模不同�
 
 ### 数据驱动配置
 
-`WeaponDefinition`、`EnemyDefinition` 和 `PlayerUpgradeData` 使用 ScriptableObject 保存静态配置，运行时组件只维护当前状态。新增或调平武器、敌人和升级时，可以修改资源而不把参数散落在控制器代码中。
+`WeaponDefinition`、`EnemyDefinition`、`PlayerUpgradeData`、`BossDecisionConfig` 和 `CombatDirectorConfig` 使用 ScriptableObject 保存静态配置，运行时组件只维护当前状态。新增或调平武器、敌人、升级、Boss 权重和导演边界时，可以修改资源而不把参数散落在控制器代码中。
+
+### Boss Utility AI 与动态战斗导演
+
+`BossAgent` 收集距离、玩家速度、靠边程度、血量和时间，`BossUtilityBrain` 过滤冷却后对六种行为评分，并应用重复惩罚；决策与 `BossHazard` 的移动/预警/伤害执行分离。`CombatDirectorModel` 先让时间进程在十分钟内把基础压力从 `0.15` 提高到 `0.75`，再用生命、近期伤害、击杀率、武器数和场上人数进行最多 `+0.25/-0.15` 的短期修正。低血量不能把后期难度锁回开局；残血重伤恢复必须回血到 `55%` 才能重新触发。Director 不修改玩家或敌人的伤害数值。
 
 ### 索敌与成长
 
@@ -87,6 +103,7 @@ Profiler 截图记录了优化前后的代表帧，但两版玩法规模不同�
 Assets/
   Art/             武器图标等项目美术资源
   Data/            武器、敌人和升级 ScriptableObject
+  Resources/Combat Boss 决策和动态战斗导演配置
   Editor/          发布设置、边界检查和多平台构建脚本
   Prefabs/         玩家、敌人、子弹、经验物和出生预警预制体
   Scenes/          主场景 Main.unity
@@ -110,12 +127,12 @@ docs/
 
 ## 验证结果
 
-- PlayMode：`6/6 PASS`，覆盖六武器触发、两级奖励、金色六选二、最终首领、胜利和设置持久化
-- 发布边界：`24/24 PASS`，覆盖 Main 场景、对象池、配置、目标选择、版本和平台设置
-- Windows：正式包启动及 v1.3.0 首领、奖励、胜利和设置画面检查通过
-- WebGL：Edge 中完成设置切换、开始、移动与暂停交互，未捕获游戏异常
-- Android：v1.3.0 已由作者完成一次真实设备基本验收，无阻塞问题
-- Windows / WebGL / Android 构建均成功，附件 SHA-256 和 APK 签名已核对
+- PlayMode：`20/20 PASS`，覆盖原六武器闭环、Boss 六行为、冷却/重复惩罚、靠边偏好、半血环形弹幕、导演边界、防控血利用与恢复重新武装
+- 发布边界：`31/31 PASS`，覆盖 Main 场景、对象池、配置、Boss/导演配置、防利用参数、目标选择、版本和平台设置
+- Windows：v1.4.0 候选包启动、首领/战斗冒烟和自动完整通关均通过，详见 [v1.4.0 验证记录](docs/devlogs/22-v1.4.0-build-verification.md)
+- WebGL：已尝试构建，在本地 Player DAG 阶段停滞且无产物
+- Android：候选 APK 构建成功（0 error，约 51.7 MB，debug 签名），当前无连接设备，真机验收未执行
+- 当前没有 v1.4.0 GitHub Release；不以候选包冒充已发布版本
 
 详细过程与适用边界见 [v1.3.0 验证证据](docs/test-results/v1.3.0/README.md)。
 
@@ -124,13 +141,15 @@ docs/
 - 当前为单场景单机生存模式，没有存档成长、联网和完整商业化内容。
 - 角色和敌人采用简洁几何视觉，重点展示玩法代码、工程拆分和多平台交付。
 - Profiler 前后截图来自不同玩法规模的提交，只能证明实施了对象池和记录了代表帧，不能用于声称确定的性能提升比例。
-- Android v1.3.0 已完成一次真实设备基本验收，但尚未覆盖多型号兼容性、长时间压力和商店审核。
-- 首领截图中的快速阶段推进属于受控自动验证，不代表作者在对应时间内手动通关；不同构筑的数值平衡仍需持续试玩。
+- Android v1.4.0 的真机覆盖、多型号兼容性、长时间压力和商店审核仍需按发布记录确认。
+- Boss 权重和导演参数已经可配置，但自动测试只证明规则和边界，不代表所有构筑下都已调平；不同构筑仍需持续试玩。
 - `v1.1.0`、`v1.0.0` 作为历史版本保留，不代表当前规则。
 
 ## 开发记录
 
 - [从启动到首领战的完整代码与开发解释](docs/PROJECT_DEVELOPMENT_EXPLAINED.md)
+- [v1.4.0 智能首领、动态战斗导演与验证边界](docs/devlogs/21-v1.4.0-intelligent-combat.md)
+- [v1.4.0 人工验收清单](docs/V1_4_0_MANUAL_ACCEPTANCE.md)（尚未执行）
 
 - [v1.3.0 首领闭环、中英文设置与实现说明](docs/V1_3_0_BOSSES_AND_SETTINGS.md)
 - [v1.3.0 自动验证、平台构建与已知边界](docs/test-results/v1.3.0/README.md)
