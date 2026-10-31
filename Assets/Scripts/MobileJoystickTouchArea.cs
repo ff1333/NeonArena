@@ -20,7 +20,9 @@ public sealed class MobileJoystickTouchArea : OnScreenControl
     private float movementRange;
     private Vector2 pointerOrigin;
     private TouchControl activeTouch;
+#if UNITY_EDITOR
     private bool mouseActive;
+#endif
     private readonly List<RaycastResult> raycastResults =
         new List<RaycastResult>();
 
@@ -130,7 +132,9 @@ public sealed class MobileJoystickTouchArea : OnScreenControl
     {
         EndInput();
         activeTouch = null;
+#if UNITY_EDITOR
         mouseActive = false;
+#endif
     }
 
     protected override void OnDisable()

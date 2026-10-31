@@ -41,6 +41,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Application.isMobilePlatform)
+        {
+            Application.targetFrameRate = 60;
+        }
+
         Time.timeScale = 0f;
         MobileControlsOverlay.SetGameplayActive(false);
         movement.enabled = false;

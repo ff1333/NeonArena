@@ -9,10 +9,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private ArenaBounds arenaBounds;
     [SerializeField, Min(0f)] private float edgePadding = 0.45f;
+    [SerializeField, Range(0f, 0.5f)] private float inputDeadZone = 0.08f;
+    [SerializeField, Min(1f)] private float acceleration = 14f;
+    [SerializeField, Min(1f)] private float deceleration = 22f;
 
     private Rigidbody2D body;
     private InputAction moveAction;
-    private Vector2 input;
+    private Vector2 targetInput;
+    private Vector2 movementInput;
 
     public float MoveSpeed => moveSpeed;
     public float MaximumMoveSpeed => maximumMoveSpeed;
@@ -22,8 +26,12 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
+        body.interpolation = RigidbodyInterpolation2D.Interpolate;
         maximumMoveSpeed = Mathf.Max(0.5f, maximumMoveSpeed);
         moveSpeed = Mathf.Clamp(moveSpeed, 0.5f, maximumMoveSpeed);
+        inputDeadZone = Mathf.Clamp(inputDeadZone, 0f, 0.5f);
+        acceleration = Mathf.Max(1f, acceleration);
+        deceleration = Mathf.Max(acceleration, deceleration);
 
         if (inputActions == null)
         {
@@ -48,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         moveAction?.Disable();
+        targetInput = Vector2.zero;
+        movementInput = Vector2.zero;
     }
 
     private void Update()
@@ -57,14 +67,22 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        input = moveAction.ReadValue<Vector2>();
-        input = Vector2.ClampMagnitude(input, 1f);
+        targetInput = ApplyDeadZone(
+            moveAction.ReadValue<Vector2>(),
+            inputDeadZone);
+        float response = targetInput.sqrMagnitude > movementInput.sqrMagnitude
+            ? acceleration
+            : deceleration;
+        movementInput = Vector2.MoveTowards(
+            movementInput,
+            targetInput,
+            response * Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
         Vector2 nextPosition =
-            body.position + input * moveSpeed * Time.fixedDeltaTime;
+            body.position + movementInput * moveSpeed * Time.fixedDeltaTime;
 
         if (arenaBounds != null)
         {
@@ -72,6 +90,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
         body.MovePosition(nextPosition);
+    }
+
+    public static Vector2 ApplyDeadZone(Vector2 value, float deadZone)
+    {
+        value = Vector2.ClampMagnitude(value, 1f);
+        float magnitude = value.magnitude;
+        deadZone = Mathf.Clamp(deadZone, 0f, 0.99f);
+
+        if (magnitude <= deadZone)
+        {
+            return Vector2.zero;
+        }
+
+        float adjustedMagnitude =
+            (magnitude - deadZone) / (1f - deadZone);
+        return value / magnitude * adjustedMagnitude;
     }
 
     public void AddMoveSpeed(float amount)

@@ -3661,7 +3661,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -3757,6 +3757,9 @@ MonoBehaviour:
   inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   arenaBounds: {fileID: 338327460}
   edgePadding: 0.45
+  inputDeadZone: 0.08
+  acceleration: 14
+  deceleration: 22
 --- !u!114 &980609855
 MonoBehaviour:
   m_ObjectHideFlags: 0
