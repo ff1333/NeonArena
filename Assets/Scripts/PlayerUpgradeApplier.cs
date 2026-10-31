@@ -9,6 +9,9 @@ public class PlayerUpgradeApplier : MonoBehaviour
 
     public int EquippedWeaponCount => shooter.EquippedCount;
     public int WeaponSlotCapacity => shooter.WeaponSlotCapacity;
+    public float HealthRatio => health.Max > 0f
+        ? Mathf.Clamp01(health.Current / health.Max)
+        : 0f;
 
     public bool CanApply(PlayerUpgradeData data)
     {

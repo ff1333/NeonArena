@@ -22,6 +22,7 @@ public class UpgradeController : MonoBehaviour
     private Action selectionCompleted;
     private bool isStartingWeaponSelection;
     private int choicesOpenedFrame = -1;
+    private readonly UpgradeChoiceSelector choiceSelector = new();
 
     public bool ExternalChoiceOpen { get; set; }
     public bool IsOpen => ExternalChoiceOpen ||
@@ -78,6 +79,7 @@ public class UpgradeController : MonoBehaviour
 
         selectionCompleted = onSelected;
         isStartingWeaponSelection = true;
+        choiceSelector.Reset();
         OpenChoices(weapons, "CHOOSE STARTING WEAPON");
         return true;
     }
@@ -104,15 +106,12 @@ public class UpgradeController : MonoBehaviour
             utilities.Add(upgrade);
         }
 
-        List<PlayerUpgradeData> choices = new List<PlayerUpgradeData>(3);
         bool isWeaponLevel = progress.Level % 3 == 0;
-
-        if (isWeaponLevel)
-        {
-            AddRandomChoices(weapons, choices, 3);
-        }
-
-        AddRandomChoices(utilities, choices, 3);
+        List<PlayerUpgradeData> choices = choiceSelector.BuildChoices(
+            weapons,
+            utilities,
+            isWeaponLevel,
+            applier.HealthRatio);
 
         if (choices.Count == 0)
         {
@@ -229,19 +228,6 @@ public class UpgradeController : MonoBehaviour
         }
 
         return isValid;
-    }
-
-    private static void AddRandomChoices(
-        List<PlayerUpgradeData> source,
-        List<PlayerUpgradeData> destination,
-        int targetCount)
-    {
-        while (source.Count > 0 && destination.Count < targetCount)
-        {
-            int randomIndex = UnityEngine.Random.Range(0, source.Count);
-            destination.Add(source[randomIndex]);
-            source.RemoveAt(randomIndex);
-        }
     }
 
     private void Select(int index)
