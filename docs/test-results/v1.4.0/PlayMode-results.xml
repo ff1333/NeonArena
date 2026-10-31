@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="20" result="Passed" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 02:27:17Z" end-time="2026-10-28 02:27:55Z" duration="38.2762644">
-  <test-suite type="TestSuite" id="1027" name="Neon Arena Rebuild" fullname="Neon Arena Rebuild" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-10-28 02:27:17Z" end-time="2026-10-28 02:27:55Z" duration="38.276264" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="25" result="Passed" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-31 13:45:59Z" end-time="2026-10-31 13:46:39Z" duration="39.6171832">
+  <test-suite type="TestSuite" id="1034" name="Neon Arena Rebuild" fullname="Neon Arena Rebuild" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-10-31 13:45:59Z" end-time="2026-10-31 13:46:39Z" duration="39.617183" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="PlayMode" />
     </properties>
-    <test-suite type="Assembly" id="1023" name="NeonArena.PlayModeTests.dll" fullname="D:/software/documents/unity_games/projects/learning/NeonArenaRebuild/Library/ScriptAssemblies/NeonArena.PlayModeTests.dll" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-10-28 02:27:17Z" end-time="2026-10-28 02:27:55Z" duration="38.270194" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1030" name="NeonArena.PlayModeTests.dll" fullname="D:/software/documents/unity_games/projects/learning/NeonArenaRebuild/Library/ScriptAssemblies/NeonArena.PlayModeTests.dll" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-10-31 13:45:59Z" end-time="2026-10-31 13:46:39Z" duration="39.609821" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="33920" />
+        <property name="_PID" value="32984" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="PlayMode" />
         <property name="EditorOnly" value="False" />
       </properties>
-      <test-suite type="TestFixture" id="1001" name="BossAndSettingsTests" fullname="BossAndSettingsTests" classname="BossAndSettingsTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-28 02:27:17Z" end-time="2026-10-28 02:27:55Z" duration="38.049937" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestFixture" id="1001" name="BossAndSettingsTests" fullname="BossAndSettingsTests" classname="BossAndSettingsTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-31 13:45:59Z" end-time="2026-10-31 13:46:38Z" duration="38.968496" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-case id="1008" name="BossDeathStopsDecisionAndReleasesHazards" fullname="BossAndSettingsTests.BossDeathStopsDecisionAndReleasesHazards" methodname="BossDeathStopsDecisionAndReleasesHazards" classname="BossAndSettingsTests" runstate="Runnable" seed="782825527" result="Passed" start-time="2026-10-28 02:27:17Z" end-time="2026-10-28 02:27:20Z" duration="2.741045" asserts="0">
+        <test-case id="1008" name="BossDeathStopsDecisionAndReleasesHazards" fullname="BossAndSettingsTests.BossDeathStopsDecisionAndReleasesHazards" methodname="BossDeathStopsDecisionAndReleasesHazards" classname="BossAndSettingsTests" runstate="Runnable" seed="841109613" result="Passed" start-time="2026-10-31 13:45:59Z" end-time="2026-10-31 13:46:02Z" duration="2.854152" asserts="0">
           <properties>
             <property name="_JOINTYPE" value="UnityCombinatorial" />
             <property name="retryIteration" value="0" />
@@ -22,7 +22,7 @@
           <output><![CDATA[Sprite Tiling might not appear correctly because the Sprite used is not generated with Full Rect. To fix this, change the Mesh Type in the Sprite's import setting to Full Rect
 ]]></output>
         </test-case>
-        <test-case id="1009" name="ChineseEnglishSettingsAndVolumePersistAcrossReload" fullname="BossAndSettingsTests.ChineseEnglishSettingsAndVolumePersistAcrossReload" methodname="ChineseEnglishSettingsAndVolumePersistAcrossReload" classname="BossAndSettingsTests" runstate="Runnable" seed="481014092" result="Passed" start-time="2026-10-28 02:27:20Z" end-time="2026-10-28 02:27:20Z" duration="0.424071" asserts="0">
+        <test-case id="1009" name="ChineseEnglishSettingsAndVolumePersistAcrossReload" fullname="BossAndSettingsTests.ChineseEnglishSettingsAndVolumePersistAcrossReload" methodname="ChineseEnglishSettingsAndVolumePersistAcrossReload" classname="BossAndSettingsTests" runstate="Runnable" seed="67830077" result="Passed" start-time="2026-10-31 13:46:02Z" end-time="2026-10-31 13:46:03Z" duration="0.634716" asserts="0">
           <properties>
             <property name="_JOINTYPE" value="UnityCombinatorial" />
             <property name="retryIteration" value="0" />
@@ -32,7 +32,7 @@
 Sprite Tiling might not appear correctly because the Sprite used is not generated with Full Rect. To fix this, change the Mesh Type in the Sprite's import setting to Full Rect
 ]]></output>
         </test-case>
-        <test-case id="1004" name="DeathDuringArrivalDoesNotSpawnBoss" fullname="BossAndSettingsTests.DeathDuringArrivalDoesNotSpawnBoss" methodname="DeathDuringArrivalDoesNotSpawnBoss" classname="BossAndSettingsTests" runstate="Runnable" seed="502528817" result="Passed" start-time="2026-10-28 02:27:20Z" end-time="2026-10-28 02:27:23Z" duration="2.415820" asserts="0">
+        <test-case id="1004" name="DeathDuringArrivalDoesNotSpawnBoss" fullname="BossAndSettingsTests.DeathDuringArrivalDoesNotSpawnBoss" methodname="DeathDuringArrivalDoesNotSpawnBoss" classname="BossAndSettingsTests" runstate="Runnable" seed="1207674323" result="Passed" start-time="2026-10-31 13:46:03Z" end-time="2026-10-31 13:46:05Z" duration="2.510777" asserts="0">
           <properties>
             <property name="_JOINTYPE" value="UnityCombinatorial" />
             <property name="retryIteration" value="0" />
@@ -41,7 +41,7 @@ Sprite Tiling might not appear correctly because the Sprite used is not generate
           <output><![CDATA[Sprite Tiling might not appear correctly because the Sprite used is not generated with Full Rect. To fix this, change the Mesh Type in the Sprite's import setting to Full Rect
 ]]></output>
         </test-case>
-        <test-case id="1007" name="EveryBossBehaviorExecutesAndCompletes" fullname="BossAndSettingsTests.EveryBossBehaviorExecutesAndCompletes" methodname="EveryBossBehaviorExecutesAndCompletes" classname="BossAndSettingsTests" runstate="Runnable" seed="846263629" result="Passed" start-time="2026-10-28 02:27:23Z" end-time="2026-10-28 02:27:34Z" duration="11.414881" asserts="0">
+        <test-case id="1007" name="EveryBossBehaviorExecutesAndCompletes" fullname="BossAndSettingsTests.EveryBossBehaviorExecutesAndCompletes" methodname="EveryBossBehaviorExecutesAndCompletes" classname="BossAndSettingsTests" runstate="Runnable" seed="1170505951" result="Passed" start-time="2026-10-31 13:46:05Z" end-time="2026-10-31 13:46:17Z" duration="11.507392" asserts="0">
           <properties>
             <property name="_JOINTYPE" value="UnityCombinatorial" />
             <property name="retryIteration" value="0" />
@@ -50,7 +50,7 @@ Sprite Tiling might not appear correctly because the Sprite used is not generate
           <output><![CDATA[Sprite Tiling might not appear correctly because the Sprite used is not generated with Full Rect. To fix this, change the Mesh Type in the Sprite's import setting to Full Rect
 ]]></output>
         </test-case>
-        <test-case id="1002" name="SixWeaponsRewardsAndFinalBossCompleteVictory" fullname="BossAndSettingsTests.SixWeaponsRewardsAndFinalBossCompleteVictory" methodname="SixWeaponsRewardsAndFinalBossCompleteVictory" classname="BossAndSettingsTests" runstate="Runnable" seed="2013474805" result="Passed" start-time="2026-10-28 02:27:34Z" end-time="2026-10-28 02:27:39Z" duration="4.624101" asserts="0">
+        <test-case id="1002" name="SixWeaponsRewardsAndFinalBossCompleteVictory" fullname="BossAndSettingsTests.SixWeaponsRewardsAndFinalBossCompleteVictory" methodname="SixWeaponsRewardsAndFinalBossCompleteVictory" classname="BossAndSettingsTests" runstate="Runnable" seed="193889379" result="Passed" start-time="2026-10-31 13:46:17Z" end-time="2026-10-31 13:46:22Z" duration="4.723879" asserts="0">
           <properties>
             <property name="_JOINTYPE" value="UnityCombinatorial" />
             <property name="retryIteration" value="0" />
@@ -59,7 +59,7 @@ Sprite Tiling might not appear correctly because the Sprite used is not generate
           <output><![CDATA[Sprite Tiling might not appear correctly because the Sprite used is not generated with Full Rect. To fix this, change the Mesh Type in the Sprite's import setting to Full Rect
 ]]></output>
         </test-case>
-        <test-case id="1006" name="StationaryPlayerDiesInFinalFightWithoutDodging" fullname="BossAndSettingsTests.StationaryPlayerDiesInFinalFightWithoutDodging" methodname="StationaryPlayerDiesInFinalFightWithoutDodging" classname="BossAndSettingsTests" runstate="Runnable" seed="1977247212" result="Passed" start-time="2026-10-28 02:27:39Z" end-time="2026-10-28 02:27:48Z" duration="9.376701" asserts="0">
+        <test-case id="1006" name="StationaryPlayerDiesInFinalFightWithoutDodging" fullname="BossAndSettingsTests.StationaryPlayerDiesInFinalFightWithoutDodging" methodname="StationaryPlayerDiesInFinalFightWithoutDodging" classname="BossAndSettingsTests" runstate="Runnable" seed="1804350727" result="Passed" start-time="2026-10-31 13:46:22Z" end-time="2026-10-31 13:46:31Z" duration="9.470289" asserts="0">
           <properties>
             <property name="_JOINTYPE" value="UnityCombinatorial" />
             <property name="retryIteration" value="0" />
@@ -68,7 +68,7 @@ Sprite Tiling might not appear correctly because the Sprite used is not generate
           <output><![CDATA[Sprite Tiling might not appear correctly because the Sprite used is not generated with Full Rect. To fix this, change the Mesh Type in the Sprite's import setting to Full Rect
 ]]></output>
         </test-case>
-        <test-case id="1003" name="TelegraphAllowsEscapeButPunishesStandingStill" fullname="BossAndSettingsTests.TelegraphAllowsEscapeButPunishesStandingStill" methodname="TelegraphAllowsEscapeButPunishesStandingStill" classname="BossAndSettingsTests" runstate="Runnable" seed="1942849865" result="Passed" start-time="2026-10-28 02:27:48Z" end-time="2026-10-28 02:27:52Z" duration="3.525487" asserts="0">
+        <test-case id="1003" name="TelegraphAllowsEscapeButPunishesStandingStill" fullname="BossAndSettingsTests.TelegraphAllowsEscapeButPunishesStandingStill" methodname="TelegraphAllowsEscapeButPunishesStandingStill" classname="BossAndSettingsTests" runstate="Runnable" seed="1738448786" result="Passed" start-time="2026-10-31 13:46:31Z" end-time="2026-10-31 13:46:35Z" duration="3.632536" asserts="0">
           <properties>
             <property name="_JOINTYPE" value="UnityCombinatorial" />
             <property name="retryIteration" value="0" />
@@ -77,7 +77,7 @@ Sprite Tiling might not appear correctly because the Sprite used is not generate
           <output><![CDATA[Sprite Tiling might not appear correctly because the Sprite used is not generated with Full Rect. To fix this, change the Mesh Type in the Sprite's import setting to Full Rect
 ]]></output>
         </test-case>
-        <test-case id="1005" name="VitalityAndRegenerationWorkDuringFinalArrival" fullname="BossAndSettingsTests.VitalityAndRegenerationWorkDuringFinalArrival" methodname="VitalityAndRegenerationWorkDuringFinalArrival" classname="BossAndSettingsTests" runstate="Runnable" seed="1143103005" result="Passed" start-time="2026-10-28 02:27:52Z" end-time="2026-10-28 02:27:55Z" duration="3.516863" asserts="0">
+        <test-case id="1005" name="VitalityAndRegenerationWorkDuringFinalArrival" fullname="BossAndSettingsTests.VitalityAndRegenerationWorkDuringFinalArrival" methodname="VitalityAndRegenerationWorkDuringFinalArrival" classname="BossAndSettingsTests" runstate="Runnable" seed="1139695943" result="Passed" start-time="2026-10-31 13:46:35Z" end-time="2026-10-31 13:46:38Z" duration="3.622189" asserts="0">
           <properties>
             <property name="_JOINTYPE" value="UnityCombinatorial" />
             <property name="retryIteration" value="0" />
@@ -87,39 +87,39 @@ Sprite Tiling might not appear correctly because the Sprite used is not generate
 ]]></output>
         </test-case>
       </test-suite>
-      <test-suite type="TestFixture" id="1010" name="CombatAITests" fullname="CombatAITests" classname="CombatAITests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.218795" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestFixture" id="1010" name="CombatAITests" fullname="CombatAITests" classname="CombatAITests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-31 13:46:38Z" end-time="2026-10-31 13:46:39Z" duration="0.321462" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-case id="1011" name="CoolingDownActionIsUnavailable" fullname="CombatAITests.CoolingDownActionIsUnavailable" methodname="CoolingDownActionIsUnavailable" classname="CombatAITests" runstate="Runnable" seed="1803160864" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.002367" asserts="0">
+        <test-case id="1011" name="CoolingDownActionIsUnavailable" fullname="CombatAITests.CoolingDownActionIsUnavailable" methodname="CoolingDownActionIsUnavailable" classname="CombatAITests" runstate="Runnable" seed="357175332" result="Passed" start-time="2026-10-31 13:46:38Z" end-time="2026-10-31 13:46:38Z" duration="0.002466" asserts="0">
           <properties>
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
         </test-case>
-        <test-case id="1017" name="DirectorStaysInsideConfiguredBounds" fullname="CombatAITests.DirectorStaysInsideConfiguredBounds" methodname="DirectorStaysInsideConfiguredBounds" classname="CombatAITests" runstate="Runnable" seed="718634043" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.000502" asserts="0">
+        <test-case id="1017" name="DirectorStaysInsideConfiguredBounds" fullname="CombatAITests.DirectorStaysInsideConfiguredBounds" methodname="DirectorStaysInsideConfiguredBounds" classname="CombatAITests" runstate="Runnable" seed="96980805" result="Passed" start-time="2026-10-31 13:46:38Z" end-time="2026-10-31 13:46:38Z" duration="0.000585" asserts="0">
           <properties>
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
         </test-case>
-        <test-case id="1013" name="DistantPlayerFavorsPursuit" fullname="CombatAITests.DistantPlayerFavorsPursuit" methodname="DistantPlayerFavorsPursuit" classname="CombatAITests" runstate="Runnable" seed="1135142802" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.000249" asserts="0">
+        <test-case id="1013" name="DistantPlayerFavorsPursuit" fullname="CombatAITests.DistantPlayerFavorsPursuit" methodname="DistantPlayerFavorsPursuit" classname="CombatAITests" runstate="Runnable" seed="902339878" result="Passed" start-time="2026-10-31 13:46:38Z" end-time="2026-10-31 13:46:38Z" duration="0.000293" asserts="0">
           <properties>
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
         </test-case>
-        <test-case id="1014" name="EdgePressureRaisesZoneBombardmentScore" fullname="CombatAITests.EdgePressureRaisesZoneBombardmentScore" methodname="EdgePressureRaisesZoneBombardmentScore" classname="CombatAITests" runstate="Runnable" seed="621989772" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.000209" asserts="0">
+        <test-case id="1014" name="EdgePressureRaisesZoneBombardmentScore" fullname="CombatAITests.EdgePressureRaisesZoneBombardmentScore" methodname="EdgePressureRaisesZoneBombardmentScore" classname="CombatAITests" runstate="Runnable" seed="524074624" result="Passed" start-time="2026-10-31 13:46:38Z" end-time="2026-10-31 13:46:38Z" duration="0.000207" asserts="0">
           <properties>
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
         </test-case>
-        <test-case id="1019" name="HeavyDamageAtLowHealthCreatesBoundedRecoveryWindow" fullname="CombatAITests.HeavyDamageAtLowHealthCreatesBoundedRecoveryWindow" methodname="HeavyDamageAtLowHealthCreatesBoundedRecoveryWindow" classname="CombatAITests" runstate="Runnable" seed="1566630278" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.000327" asserts="0">
+        <test-case id="1019" name="HeavyDamageAtLowHealthCreatesBoundedRecoveryWindow" fullname="CombatAITests.HeavyDamageAtLowHealthCreatesBoundedRecoveryWindow" methodname="HeavyDamageAtLowHealthCreatesBoundedRecoveryWindow" classname="CombatAITests" runstate="Runnable" seed="90874487" result="Passed" start-time="2026-10-31 13:46:38Z" end-time="2026-10-31 13:46:38Z" duration="0.000334" asserts="0">
           <properties>
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
         </test-case>
-        <test-case id="1022" name="LiveDirectorEntersRecoveryAfterHeavyDamage" fullname="CombatAITests.LiveDirectorEntersRecoveryAfterHeavyDamage" methodname="LiveDirectorEntersRecoveryAfterHeavyDamage" classname="CombatAITests" runstate="Runnable" seed="336846005" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.211238" asserts="0">
+        <test-case id="1022" name="LiveDirectorEntersRecoveryAfterHeavyDamage" fullname="CombatAITests.LiveDirectorEntersRecoveryAfterHeavyDamage" methodname="LiveDirectorEntersRecoveryAfterHeavyDamage" classname="CombatAITests" runstate="Runnable" seed="968535250" result="Passed" start-time="2026-10-31 13:46:38Z" end-time="2026-10-31 13:46:39Z" duration="0.313656" asserts="0">
           <properties>
             <property name="_JOINTYPE" value="UnityCombinatorial" />
             <property name="retryIteration" value="0" />
@@ -128,37 +128,76 @@ Sprite Tiling might not appear correctly because the Sprite used is not generate
           <output><![CDATA[Sprite Tiling might not appear correctly because the Sprite used is not generated with Full Rect. To fix this, change the Mesh Type in the Sprite's import setting to Full Rect
 ]]></output>
         </test-case>
-        <test-case id="1018" name="LowHealthCannotHoldLateRunAtOpeningDifficulty" fullname="CombatAITests.LowHealthCannotHoldLateRunAtOpeningDifficulty" methodname="LowHealthCannotHoldLateRunAtOpeningDifficulty" classname="CombatAITests" runstate="Runnable" seed="1601268103" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.000410" asserts="0">
+        <test-case id="1018" name="LowHealthCannotHoldLateRunAtOpeningDifficulty" fullname="CombatAITests.LowHealthCannotHoldLateRunAtOpeningDifficulty" methodname="LowHealthCannotHoldLateRunAtOpeningDifficulty" classname="CombatAITests" runstate="Runnable" seed="2116833030" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.000391" asserts="0">
           <properties>
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
         </test-case>
-        <test-case id="1020" name="RecoveryCannotRetriggerImmediately" fullname="CombatAITests.RecoveryCannotRetriggerImmediately" methodname="RecoveryCannotRetriggerImmediately" classname="CombatAITests" runstate="Runnable" seed="593355275" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.000288" asserts="0">
+        <test-case id="1020" name="RecoveryCannotRetriggerImmediately" fullname="CombatAITests.RecoveryCannotRetriggerImmediately" methodname="RecoveryCannotRetriggerImmediately" classname="CombatAITests" runstate="Runnable" seed="1830265240" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.000275" asserts="0">
           <properties>
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
         </test-case>
-        <test-case id="1021" name="RecoveryRequiresHealthToRearmBeforeRetriggering" fullname="CombatAITests.RecoveryRequiresHealthToRearmBeforeRetriggering" methodname="RecoveryRequiresHealthToRearmBeforeRetriggering" classname="CombatAITests" runstate="Runnable" seed="519857247" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.000391" asserts="0">
+        <test-case id="1021" name="RecoveryRequiresHealthToRearmBeforeRetriggering" fullname="CombatAITests.RecoveryRequiresHealthToRearmBeforeRetriggering" methodname="RecoveryRequiresHealthToRearmBeforeRetriggering" classname="CombatAITests" runstate="Runnable" seed="784728573" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.000370" asserts="0">
           <properties>
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
         </test-case>
-        <test-case id="1012" name="RepeatingTheSameActionReducesItsScore" fullname="CombatAITests.RepeatingTheSameActionReducesItsScore" methodname="RepeatingTheSameActionReducesItsScore" classname="CombatAITests" runstate="Runnable" seed="1134611610" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.000374" asserts="0">
+        <test-case id="1012" name="RepeatingTheSameActionReducesItsScore" fullname="CombatAITests.RepeatingTheSameActionReducesItsScore" methodname="RepeatingTheSameActionReducesItsScore" classname="CombatAITests" runstate="Runnable" seed="464403196" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.000404" asserts="0">
           <properties>
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
         </test-case>
-        <test-case id="1015" name="RingBarrageUnlocksAtHalfHealth" fullname="CombatAITests.RingBarrageUnlocksAtHalfHealth" methodname="RingBarrageUnlocksAtHalfHealth" classname="CombatAITests" runstate="Runnable" seed="945876259" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.000318" asserts="0">
+        <test-case id="1015" name="RingBarrageUnlocksAtHalfHealth" fullname="CombatAITests.RingBarrageUnlocksAtHalfHealth" methodname="RingBarrageUnlocksAtHalfHealth" classname="CombatAITests" runstate="Runnable" seed="158748743" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.000337" asserts="0">
           <properties>
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
         </test-case>
-        <test-case id="1016" name="SpawnBatchStopsAtEnemyCap" fullname="CombatAITests.SpawnBatchStopsAtEnemyCap" methodname="SpawnBatchStopsAtEnemyCap" classname="CombatAITests" runstate="Runnable" seed="1256280151" result="Passed" start-time="2026-10-28 02:27:55Z" end-time="2026-10-28 02:27:55Z" duration="0.000127" asserts="0">
+        <test-case id="1016" name="SpawnBatchStopsAtEnemyCap" fullname="CombatAITests.SpawnBatchStopsAtEnemyCap" methodname="SpawnBatchStopsAtEnemyCap" classname="CombatAITests" runstate="Runnable" seed="730187443" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.000135" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1023" name="PlayerMovementFeelTests" fullname="PlayerMovementFeelTests" classname="PlayerMovementFeelTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.287732" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1025" name="DeadZoneRemovesNoiseAndPreservesFullInput" fullname="PlayerMovementFeelTests.DeadZoneRemovesNoiseAndPreservesFullInput" methodname="DeadZoneRemovesNoiseAndPreservesFullInput" classname="PlayerMovementFeelTests" runstate="Runnable" seed="802485668" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.000844" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1024" name="PlayerUsesInterpolationForSmoothRendering" fullname="PlayerMovementFeelTests.PlayerUsesInterpolationForSmoothRendering" methodname="PlayerUsesInterpolationForSmoothRendering" classname="PlayerMovementFeelTests" runstate="Runnable" seed="511374716" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.286146" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Sprite Tiling might not appear correctly because the Sprite used is not generated with Full Rect. To fix this, change the Mesh Type in the Sprite's import setting to Full Rect
+]]></output>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1026" name="UpgradeChoiceSelectorTests" fullname="UpgradeChoiceSelectorTests" classname="UpgradeChoiceSelectorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.030229" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1029" name="ChoicesAreUniqueAndUnseenOptionsBuildDrought" fullname="UpgradeChoiceSelectorTests.ChoicesAreUniqueAndUnseenOptionsBuildDrought" methodname="ChoicesAreUniqueAndUnseenOptionsBuildDrought" classname="UpgradeChoiceSelectorTests" runstate="Runnable" seed="613015762" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.004414" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1028" name="LowHealthStronglyRaisesHealWeight" fullname="UpgradeChoiceSelectorTests.LowHealthStronglyRaisesHealWeight" methodname="LowHealthStronglyRaisesHealWeight" classname="UpgradeChoiceSelectorTests" runstate="Runnable" seed="2039231752" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.000658" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1027" name="RecentChoiceIsSuppressedAndMissedChoiceGainsWeight" fullname="UpgradeChoiceSelectorTests.RecentChoiceIsSuppressedAndMissedChoiceGainsWeight" methodname="RecentChoiceIsSuppressedAndMissedChoiceGainsWeight" classname="UpgradeChoiceSelectorTests" runstate="Runnable" seed="1854259881" result="Passed" start-time="2026-10-31 13:46:39Z" end-time="2026-10-31 13:46:39Z" duration="0.000154" asserts="0">
           <properties>
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />

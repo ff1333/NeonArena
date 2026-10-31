@@ -4,7 +4,7 @@
 
 **v1.4.0 发布候选**：Boss 不再固定轮播技能，而由 Utility AI 根据距离、玩家速度、场地位置和自身血量选择追击、预测冲刺、弹幕、区域轰炸、半血环形弹幕或重新站位；普通战斗由有上下限的动态战斗导演调整刷怪节奏、批次和敌人组合，残血重伤后会出现有限恢复窗口。
 
-当前正式版仍为 `v1.3.0`。v1.4.0 的代码、自动测试、Windows 候选包和 Android 候选 APK 已完成，但作者 Windows/Android 手动试玩尚未完成，因此暂不合并、不发布正式 Release。先看 [v1.4.0 发布候选说明](docs/RELEASE_NOTES_v1.4.0.md)、[PR #17](https://github.com/ff1333/NeonArena/pull/17) 及 [开发与验证记录](docs/devlogs/21-v1.4.0-intelligent-combat.md)。
+当前正式版仍为 `v1.3.0`。v1.4.0 的代码、自动测试、Windows 候选包和 Android 候选 APK 已完成；作者已试玩此前候选包并提出移动卡顿，本轮已完成移动平滑修复，最新 APK 仍需覆盖安装回归，因此暂不合并、不发布正式 Release。先看 [v1.4.0 发布候选说明](docs/RELEASE_NOTES_v1.4.0.md)、[PR #17](https://github.com/ff1333/NeonArena/pull/17) 及 [开发与验证记录](docs/devlogs/21-v1.4.0-intelligent-combat.md)。
 
 ![v1.3.0 title](docs/test-results/v1.3.0/native/v1.3.0-title-zh.png)
 
@@ -26,7 +26,7 @@ v1.4 候选包中的首领战与普通战斗：
 - [GitHub Release v1.0.0](https://github.com/ff1333/NeonArena/releases/tag/v1.0.0)（历史稳定版）
 - 已发布版本的 Release 附件包含 Windows、WebGL 和 Android 测试包，以及 SHA-256 校验文件。
 - `v1.3.0` Android APK 已由作者在真实设备上完成基本验收。
-- v1.4.0 尚未发布；Windows 候选包与 Android 候选 APK 均已构建，当前没有连接 Android 设备，真机验收未执行。
+- v1.4.0 尚未发布；此前 Windows/Android 候选包已由作者试玩，2026-10-31 的移动平滑重建包待覆盖安装回归。
 
 ## 操作
 
@@ -95,7 +95,7 @@ Profiler 截图记录了优化前后的代表帧，但两版玩法规模不同�
 
 ### 移动端输入
 
-桌面与移动端共享 Unity Input System 的 `Player/Move` 动作。Android 浮动摇杆把任意非按钮触摸区域映射为虚拟 `<Gamepad>/leftStick`，因此复用玩家移动、速度升级和边界限制逻辑。
+桌面与移动端共享 Unity Input System 的 `Player/Move` 动作。Android 浮动摇杆把任意非按钮触摸区域映射为虚拟 `<Gamepad>/leftStick`，再经过 0.08 死区、14/s 加速和 22/s 减速响应；`Rigidbody2D` 开启插值，Android 目标帧率为 60，因此复用玩家移动、速度升级和边界限制逻辑的同时减少物理帧阶梯感。
 
 ## 项目结构
 
@@ -127,11 +127,11 @@ docs/
 
 ## 验证结果
 
-- PlayMode：`20/20 PASS`，覆盖原六武器闭环、Boss 六行为、冷却/重复惩罚、靠边偏好、半血环形弹幕、导演边界、防控血利用与恢复重新武装
+- PlayMode：`25/25 PASS`，覆盖原六武器闭环、Boss 六行为、冷却/重复惩罚、靠边偏好、半血环形弹幕、导演边界、防控血利用、恢复重新武装、升级选择和移动输入回归
 - 发布边界：`31/31 PASS`，覆盖 Main 场景、对象池、配置、Boss/导演配置、防利用参数、目标选择、版本和平台设置
 - Windows：v1.4.0 候选包启动、首领/战斗冒烟和自动完整通关均通过，详见 [v1.4.0 验证记录](docs/devlogs/22-v1.4.0-build-verification.md)
 - WebGL：已尝试构建，在本地 Player DAG 阶段停滞且无产物
-- Android：候选 APK 构建成功（0 error，约 51.7 MB，debug 签名），当前无连接设备，真机验收未执行
+- Android：候选 APK 构建成功（0 errors / 0 warnings，50,968,035 bytes，debug 签名），最新移动平滑包待作者覆盖安装
 - 当前没有 v1.4.0 GitHub Release；不以候选包冒充已发布版本
 
 详细过程与适用边界见 [v1.3.0 验证证据](docs/test-results/v1.3.0/README.md)。

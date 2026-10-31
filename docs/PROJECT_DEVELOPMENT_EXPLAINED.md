@@ -461,7 +461,7 @@ UI 不应该自己决定游戏规则。主要关系是：
 
 ## 十五、测试和发布
 
-当前 PlayMode 测试为 `20/20`。原有六项继续覆盖：
+当前 PlayMode 测试为 `25/25`。原有六项继续覆盖：
 
 - 六武器触发小首领；
 - 小首领奖励两级；
@@ -470,7 +470,7 @@ UI 不应该自己决定游戏规则。主要关系是：
 - 受伤预警可躲避；
 - 设置持久化。
 
-v1.4 新增十二项，覆盖：
+v1.4 继续增加 Boss、导演、升级选择和移动输入覆盖：
 
 - Boss 每个行为都能独立启动并完成；
 - Boss 死亡后停止决策并释放所有危险对象；
@@ -832,7 +832,7 @@ Health.Damaged / EnemyController.DiedGlobally
 
 ### 23.2 自动测试覆盖
 
-当前 PlayMode `20/20`。v1.4 新增测试分为两类：
+当前 PlayMode `25/25`。v1.4 测试覆盖 Boss、导演、升级选择和移动手感：
 
 - Boss：冷却中的技能不可选、重复行为扣分、远距离偏好追击、靠边提高区域轰炸、半血解锁环形弹幕、六个行为均可执行完成、Boss 死亡释放危险并停止决策。
 - 导演：压力与输出边界、低血量不能锁住后期难度、恢复必须回血重新武装、重伤恢复、恢复冷却、敌人数上限批次、真实场景重伤恢复。
@@ -857,17 +857,48 @@ Health.Damaged / EnemyController.DiedGlobally
 
 ### 23.4 当前验证状态
 
-- PlayMode `20/20` 通过，XML 证据在 `docs/test-results/v1.4.0/PlayMode-results.xml`。
+- PlayMode `25/25` 通过，XML 证据在 `docs/test-results/v1.4.0/PlayMode-results.xml`。
 - 发布边界 `31/31` 通过。
 - 防利用修复后的 Windows 候选包构建 `0 error`，独立小首领流程冒烟通过。880 秒自动完整通关来自修复前候选，只作为完整流程历史证据，不冒充新包的完整通关。
-- Android 候选 APK 已构建成功：约 51.7 MB，0 error、1 warning；构建耗时 3 分 42 秒，versionCode 5。
-- APK 使用本地 Android Debug 证书签名，不是生产签名；当前没有连接设备，未安装，因此不把构建成功写成真机通过。
+- Android 候选 APK 已重新构建：50,968,035 bytes，0 error、0 warning，versionCode 5。
+- APK 使用本地 Android Debug 证书签名，不是生产签名；作者测试过此前候选，最新移动修复包在构建时没有连接设备，仍需覆盖安装回归。
 - Windows 自动首领练习从 42 点生命开始，使用固定自动规避，在约 23 秒被一次范围攻击击杀。日志已保留为 `NEON_BOSS_PRACTICE_FAIL`，不能写成人工通关。
 - WebGL 构建已尝试，但在本地 Player DAG 阶段停滞且没有产物，未计入通过。
 - Draft PR #17 已创建但未合并；修复后的候选包已在本地重建，Draft Release（id `425471979`）中的旧附件必须用新包替换后才能发布。
-- 作者 Windows/Android 手动验收仍是发布前待办。
+- 最新移动修复包的 Windows/Android 手感回归仍是发布前待办。
 
-这意味着代码主体和工程证据已经完成，但“手感是否合适”和“真机是否可玩”没有被自动化替代。
+作者已在此前候选包上发现移动卡顿，本轮通过插值、死区和输入响应完成修复；最新 APK 仍需覆盖安装确认手感，自动化不替代这一步。
+
+### 23.5 移动端移动手感优化
+
+#### 为什么会感觉卡
+
+玩家通过 `Rigidbody2D.MovePosition` 在 `FixedUpdate` 中移动，默认物理更新频率与手机渲染帧率并不相同。原场景的 `Rigidbody2D` 没有开启插值，相机又在 `LateUpdate` 跟随，所以渲染帧会重复看到同一个物理位置，再突然跳到下一位置。摇杆小幅噪声直接进入移动，也会让方向变化显得生硬。
+
+#### 输入到移动的完整链路
+
+```text
+左侧浮动摇杆
+→ Input System 的 Player/Move
+→ PlayerMovement.Update 读取原始 Vector2
+→ 0.08 死区过滤并重映射剩余幅度
+→ MoveTowards：14/s 加速、22/s 减速
+→ PlayerMovement.FixedUpdate
+→ Rigidbody2D.MovePosition
+→ Rigidbody2D.Interpolate 在渲染帧补间
+→ CameraFollow.LateUpdate 读取连续位置
+```
+
+移动端同时将 `Application.targetFrameRate` 设为 60。这里没有把移动放回 `Transform.position`，因为仍需要刚体碰撞和竞技场边界。
+
+#### 参数为什么这样设置
+
+- 死区 `0.08`：过滤手指静止时的小幅漂移；
+- 加速 `14/s`：约 0.07 秒达到满输入，仍然足够直接；
+- 减速 `22/s`：松手约 0.05 秒归零，避免幸存者类游戏出现滑行感；
+- 对角输入仍通过 `ClampMagnitude` 限制为 1，斜向不会更快。
+
+完整记录见 [`24-v1.4.0-mobile-movement-polish.md`](devlogs/24-v1.4.0-mobile-movement-polish.md)。
 
 ## 二十四、Git 记录与面试讲法
 
